@@ -1,0 +1,330 @@
+body {
+	font-family: "獅尾牙膏圓體", sans-serif;
+	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+	display: inline-block;
+}
+img,
+iframe {
+	width: 100%;
+}
+/*色彩*/
+.text-darkred {
+	color: #3e0b1b;
+}
+.text-green {
+	color: #84b78e;
+}
+.text-pearl {
+	color: #d3cabb;
+}
+.text-lotus {
+	color: #b4acd3;
+}
+
+.mask-pearl {
+	color: #d3cabb;
+}
+.btn-pearl {
+	/*btn為    button*/
+	background-color: #d3cabb;
+}
+.btn-lotus {
+	/*btn為    button*/
+	background-color: #b4acd3;
+}
+.btn-lotus-a {
+	/*btn為    button*/
+	background-color: rgb(180, 172, 211, 0.5);
+}
+
+.btn-green-a {
+	background-color: rgb(132, 183, 142, 0.5);
+}
+.btn-green-a:hover,
+.btn-green-a:active {
+	background-color: rgb(132, 183, 142, 1) !important;
+}
+.border-darkred {
+	border-color: #3e0b1b !important;
+}
+.border-green {
+	border-color: #84b78e !important;
+}
+
+.bgc-lotus {
+	/*top顏色*/
+	background-color: #b4acd3;
+}
+.bgc-lotus-a {
+	/*a為半透明/
+	/*選單底色*/
+	background-color: rgba(180, 172, 211, 0.5);
+}
+.bgc-lotus-a-nav {
+	/*btn為    button*/
+	background-color: #d8d5e8;
+}
+.bgc-pearl-a {
+	background-color: rgba(211, 202, 187, 1);
+}
+.bgc-pearl-aa {
+	background-color: rgba(211, 202, 187, 0.5);
+}
+/* -------------- */
+/* 自訂(使用在關於) */
+.py-7 {
+	padding-top: 7rem;
+	padding-bottom: 7rem;
+}
+
+.fs-10 {
+	font-size: 0.624rem;
+}
+[lang="en"] p {
+	text-align: left;
+}
+.bg-img {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+/* 語系 */
+.dropdown-toggle::after {
+	display: none; /*拿掉語系旁邊的下拉按鈕*/
+}
+.lang-menu .dropdown-menu {
+	/* text-align: center; 字如果多的話在加才會文字置中*/
+	min-width: auto;
+}
+.lang-menu .dropdown-menu li.border-bottom:last-of-type {
+	border: 0 !important; /*為了把最後的商品的分隔線拿掉*/
+}
+/* -------------- */
+/* 主選單 */
+
+.navbar-collapse {
+	flex-grow: 0;
+}
+.section-title p::before {
+	content: "❧ ~";
+	color: #3e0b1b; /*自己加的*/
+}
+.section-title p::after {
+	content: "~ ☙";
+	color: #3e0b1b; /*自己加的*/
+}
+/*自己加的:*/
+h2 {
+	color: #3e0b1b;
+}
+/*自己加的/:*/
+.section-title p {
+	color: #84b78e;
+}
+/* .nav-link {
+	color: #3e0b1b;
+}
+a.nav-link:focus,
+a.nav-link:hover {
+	color: #84b78e;
+}*/
+
+/*購物車+99*/
+.cart-btn span {
+	bottom: 0.5rem;
+	left: 15px;
+}
+.fs-8 {
+	font-size: 0.5rem;
+}
+/* -------------- */
+/* 進度條 */
+.percentCount {
+	font-weight: 400;
+	font-size: 1rem;
+	color: #3e0b1b;
+	font-family: "獅尾牙膏圓體";
+	margin-top: 0.5rem;
+}
+/* -------------- */
+
+/* 最新商品 */
+#new-product .card ul {
+	bottom: -55px;
+	transition: 0.3s;
+}
+#new-product .card:hover ul {
+	bottom: 0;
+}
+
+#new-product .card-text span::before {
+	content: "NT$";
+	padding-right: 0.1rem;
+}
+#new-product .card-text span::after {
+	content: "元";
+	padding-left: 0.1rem;
+	font-size: 15px;
+}
+/* -------------- */
+/* 線上購物 */
+#onlineshop-page .card ul {
+	bottom: -55px;
+	transition: 0.3s;
+}
+#onlineshop-page .card:hover ul {
+	bottom: 0;
+}
+
+#onlineshop-page .card-text span::before {
+	content: "NT$";
+	padding-right: 0.1rem;
+}
+#onlineshop-page .card-text span::after {
+	content: "元";
+	padding-left: 0.1rem;
+	font-size: 15px;
+}
+
+/* -------------- */
+/* 休假公告 */
+#holiday p:not(h2 + p) {
+	text-align: justify;
+}
+#holiday li {
+	line-height: 1.7;
+}
+.img-box {
+	height: 410px;
+}
+/* -------------- */
+/* 訂閱 */
+#subscribe.bg-img {
+	background-attachment: fixed;
+}
+#subscribe .container > div.position-absolute .logo-s {
+	width: 120px;
+}
+#subscribe .container > div.position-absolute {
+	/* top: -1.5rem; */
+	top: calc(-3rem - 60px);
+	/* padding是py-5為3rem-圖一半120*2=60 */
+}
+
+/* 訂閱表單 */
+.z-100 {
+	/* 藏東西 */
+	z-index: -100;
+}
+/* -------------- */
+/* 聯絡我們 */
+/* 姓名 */
+#for-name.shadow-sm {
+	/* 可加可不加(要加在input class裡面shadow-sm) */
+	box-shadow: 0 3px 5px #84b78e !important ;
+}
+/* 留言 */
+#for-message {
+	resize: none;
+	height: 150px;
+}
+/* 地圖 */
+.map iframe {
+	height: 600px;
+}
+/* -------------- */
+/* footer */
+/* 社群logo */
+.social-icon li:last-of-type,
+.filter-btn li:last-of-type {
+	margin-right: 0;
+}
+/* -------------- */
+/* menu */
+/* 商品 */
+.filter-box:hover .card-body {
+	opacity: 0;
+	transition: all 0.5s;
+}
+.filter-box:hover .col:hover .card-body {
+	opacity: 1;
+	top: 1.5rem !important;
+	right: 1.5rem !important;
+	bottom: 1.5rem !important;
+	left: 1.5rem !important;
+	border-radius: 2rem;
+}
+/* 菜單分類框線拿掉 */
+.btn.active {
+	border: 0;
+	background-color: #84b78e;
+	border-color: transparent;
+}
+.btn:hover,
+.btn:active,
+.btn:focus {
+	background-color: #84b78e;
+	border-color: transparent !important;
+}
+.btn {
+	border-color: transparent;
+}
+/* -------------- */
+/* sale */
+/* js修改 */
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+	background: #84b78e;
+	width: 30px;
+}
+/* -------------- */
+/* cart-list購物車 */
+.form-check .form-check-input {
+	float: none !important;
+	margin-left: 0;
+}
+.form-check {
+	padding-left: 0;
+}
+
+#cart-list-form th:not(th:last-of-type):not(th:first-of-type) {
+	border-right: 2px solid #84b78e;
+}
+.plus-btn,
+.dash-btn {
+	width: 30px;
+	height: 30px;
+}
+
+/* .plus-btn i,
+.dash-btn i{
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	line-height: 25px; 	/* 行高當垂直居中 
+	font-size: 0.8rem; */
+
+/* #cart-list-form table{
+	--bs-table-bg:transparent!important;
+}  table的顏色下方的tr顏色*/
+/* 結帳 */
+#cart-list-page .card-money-text::before {
+	content: "NT$";
+	padding-right: 0.1rem;
+}
+#cart-list-page .card-money-text::after {
+	content: "元";
+	padding-left: 0.1rem;
+	font-size: 15px;
+}
+/* -------------- */
+/* 商品說明頁 */
+/* 價錢 */
+#product-description-page .product-description-money-text::before {
+	content: "NT$";
+	padding-right: 0.1rem;
+}

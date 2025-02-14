@@ -1,0 +1,52 @@
+@media (max-width: 991px) {
+	#cart-list-form thead {
+		display: none;
+	}
+	#cart-list-form table,
+    /* #cart-list-form tr, */
+    #cart-list-form td {
+		display: block;
+		border: none;
+	}
+	#cart-list-form tr {
+		display: flex;
+		flex-wrap: wrap;
+		position: relative;
+		border-bottom: 1px solid gray;
+	}
+	/* #cart-list-form tr:last-of-type { 
+        border:none;
+    } */
+
+	/* 選取 */
+	#cart-list-form tr td:nth-of-type(1) {
+		flex: 0 0 5%;
+	}
+	/* 商品資料 */
+	#cart-list-form tr td:nth-of-type(2) {
+		flex: 0 0 94%;
+	}
+	/* 規格 */
+	#cart-list-form tr td:nth-of-type(3) {
+		flex: 0 0 25%;
+	}
+	/* 數量 */
+	#cart-list-form tr td:nth-of-type(4) {
+		flex: 0 0 44%;
+	}
+	/* 小計 */
+	#cart-list-form tr td:nth-of-type(5) {
+		flex: 0 0 30%;
+	}
+	/* 變更 */
+	#cart-list-form tr td:nth-of-type(6) {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	
+} 
+/* 原本要調整數量的數字
+	.min-width-60 {
+		width: 60px !important; /* 根據需要調整手機板上的最小寬度 */
+	
