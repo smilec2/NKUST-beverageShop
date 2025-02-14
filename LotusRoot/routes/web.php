@@ -19,3 +19,5 @@ Route::group(['prefix' => 'user'], function () {
         );
     });
 });
+
+Route::get("products", 'App\Http\Controllers\ProductController@index');

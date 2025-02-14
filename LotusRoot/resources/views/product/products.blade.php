@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1>所有商品</h1>
+    @foreach ($products as $product)
     <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>商品名稱：{{$product->product_name}}</li>
+        <li>商品描述：{{$product->description}}</li>
+        <li>價格：{{$product->price}}</li>
     </ul>
+    @endforeach
     
 </body>
 </html>
