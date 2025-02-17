@@ -41,4 +41,4 @@ DB_PASSWORD=password
 ```
 
 ### 在瀏覽器輸入localhost，看到以下畫面就成功囉
-![首頁](/Users/chenzongwei/Desktop/screencapture-localhost-2025-02-17-20_56_42.png)
+![首頁](mainPage.png)
