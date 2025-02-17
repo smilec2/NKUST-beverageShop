@@ -24,8 +24,7 @@ Route::get("products", 'App\Http\Controllers\ProductController@index');
 
 Route::group(['prefix' => 'manage'], function () {
     Route::group(["prefix" => "product"], function () {
-        Route::get("create", function () {
-            return view("upload_product");
-        });
+        Route::get("create", "App\Http\Controllers\ProductController@create");
+        Route::post("create", "App\Http\Controllers\ProductController@store");
     });
 });
