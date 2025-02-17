@@ -9,6 +9,11 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public function indexForMainPage()
+    {
+        $products = Product::find(13);
+        return view('index', compact('products'));
+    }
     public function index()
     {
         $products = Product::paginate(5);
@@ -46,7 +51,7 @@ class ProductController extends Controller
             $path = $request->file('image_url')->store('products', 'public');
         }
 
-    // 儲存到資料庫
+        // 儲存到資料庫
         Product::create([
             'product_name' => $request->product_name,
             'description' => $request->description,

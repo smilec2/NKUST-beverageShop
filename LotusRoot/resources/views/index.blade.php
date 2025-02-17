@@ -29,24 +29,13 @@
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<img src="assets/images/back1.jpg" class="d-block w-100" alt="back1" />
-				<div class="carousel-caption d-none d-md-block">
-					<h5>First slide label</h5>
-					<p>Some representative placeholder content for the first slide.</p>
-				</div>
+
 			</div>
 			<div class="carousel-item">
 				<img src="assets/images/back2.jpg" class="d-block w-100" alt="back2" />
-				<div class="carousel-caption d-none d-md-block">
-					<h5>Second slide label</h5>
-					<p>Some representative placeholder content for the second slide.</p>
-				</div>
 			</div>
 			<div class="carousel-item">
 				<img src="assets/images/back3.jpg" class="d-block w-100" alt="back3" />
-				<div class="carousel-caption d-none d-md-block">
-					<h5>Third slide label</h5>
-					<p>Some representative placeholder content for the third slide.</p>
-				</div>
 			</div>
 		</div>
 		<!-- 箭頭 -->
@@ -405,7 +394,7 @@
 				<div class="col">
 					<div class="card h-100">
 						<div class="position-relative overflow-hidden">
-							<img src="assets/images/drink1.jpg" class="card-img-top" alt="手熬薏仁湯" />
+							<img src="{{ asset('storage/' . $products->image_url) }}" class="card-img-top" alt="手熬薏仁湯" />
 							<span
 								class="position-absolute top-0 end-0 bg-warning px-3 mt-2 me-2 rounded-pill text-uppercase"
 								>sale</span
@@ -444,165 +433,17 @@
 							<!-- rounded-pill圓角 -->
 						</div>
 						<div class="card-body text-darkred text-center">
-							<h3 class="card-title h5">手熬薏仁湯</h3>
+							<h3 class="card-title h5">{{$products->product_name}}</h3>
 							<div class="card-text fst-italic">
-								<span class="sale fs-4 p-2 text-green">45</span>
+								<span class="sale fs-4 p-2 text-green">{{$products->price}}</span>
 								<!-- <del>55</del> del標籤刪除線 -->
-								<span class="text-decoration-line-through p-2">55</span>
+								<!-- <span class="text-decoration-line-through p-2">55</span> -->
 								<!-- text-decoration-line-through 刪除線 -->
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="card h-100">
-						<div class="position-relative overflow-hidden">
-							<img src="assets/images/drink2.jpg" class="card-img-top" alt="招牌蓮藕牛奶" />
-							<span
-								class="position-absolute top-0 end-0 bg-success px-3 mt-2 me-2 rounded-pill text-uppercase"
-								>popular</span
-							>
-							<!-- 英文大寫text-uppercase -->
-							<!-- 收藏、加入購物車、連結詳情頁 -->
-							<ul
-								class="list-unstyled d-flex align-items-center justify-content-between position-absolute start-0 end-0 mt-3 ms-3 me-3 bg-secondary bg-opacity-75 rounded-start-pill rounded-end-pill">
-								<!-- list-unstyled點拿掉 -->
-								<li class="col text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入我的最愛商品"
-										class="text-green fs-5 pt-1">
-										<i class="bi bi-suit-heart-fill"></i>
-										<span class="d-none">我的最愛商品</span>
-									</a>
-								</li>
-								<li
-									class="border-start border-end border-dark py-1 col-6 text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入購物車"
-										class="text-green fs-5">
-										<i class="bi bi-cart-plus"></i>
-										<span class="d-none">加入購物車</span>
-									</a>
-								</li>
-								<li class="col text-center">
-									<a href="#" title="點擊前往商品說明頁" class="text-green fs-5 pt-1">
-										<i class="bi bi-info-circle-fill"></i>
-										<span class="d-none">商品說明頁</span>
-									</a>
-								</li>
-							</ul>
-							<!-- rounded-pill圓角 -->
-						</div>
-						<div class="card-body text-darkred text-center">
-							<h3 class="card-title h5">招牌蓮藕牛奶</h3>
-							<div class="card-text fst-italic">
-								<span class="sale fs-4 p-2 text-green">60</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<div class="position-relative overflow-hidden">
-							<img src="assets/images/drink3.jpg" class="card-img-top" alt="手熬綠豆露" />
-							<span
-								class="position-absolute top-0 end-0 bg-danger px-3 mt-2 me-2 rounded-pill text-uppercase"
-								>hot</span
-							>
-							<!-- 英文大寫text-uppercase -->
-							<!-- 收藏、加入購物車、連結詳情頁 -->
-							<ul
-								class="list-unstyled d-flex align-items-center justify-content-between position-absolute start-0 end-0 mt-3 ms-3 me-3 bg-secondary bg-opacity-75 rounded-start-pill rounded-end-pill">
-								<!-- list-unstyled點拿掉 -->
-								<li class="col text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入我的最愛商品"
-										class="text-green fs-5 pt-1">
-										<i class="bi bi-suit-heart-fill"></i>
-										<span class="d-none">我的最愛商品</span>
-									</a>
-								</li>
-								<li
-									class="border-start border-end border-dark py-1 col-6 text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入購物車"
-										class="text-green fs-5">
-										<i class="bi bi-cart-plus"></i>
-										<span class="d-none">加入購物車</span>
-									</a>
-								</li>
-								<li class="col text-center">
-									<a href="#" title="點擊前往商品說明頁" class="text-green fs-5 pt-1">
-										<i class="bi bi-info-circle-fill"></i>
-										<span class="d-none">商品說明頁</span>
-									</a>
-								</li>
-							</ul>
-							<!-- rounded-pill圓角 -->
-						</div>
-						<div class="card-body text-darkred text-center">
-							<h3 class="card-title h5">手熬綠豆露</h3>
-							<div class="card-text fst-italic">
-								<span class="sale fs-4 p-2 text-green">45</span>
-								<!-- <del>55</del> del標籤刪除線 -->
-								<span class="text-decoration-line-through p-2">50</span>
-								<!-- text-decoration-line-through 刪除線 -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card h-100">
-						<div class="position-relative overflow-hidden">
-							<img src="assets/images/drink4.jpg" class="card-img-top" alt="洛神烏梅" />
-							<!-- <span
-								class="position-absolute top-0 end-0 bg-success px-3 mt-2 me-2 rounded-pill text-uppercase"
-								>popular</span> -->
-							<!-- 英文大寫text-uppercase -->
-							<!-- 收藏、加入購物車、連結詳情頁 -->
-							<ul
-								class="list-unstyled d-flex align-items-center justify-content-between position-absolute start-0 end-0 mt-3 ms-3 me-3 bg-secondary bg-opacity-75 rounded-start-pill rounded-end-pill">
-								<!-- list-unstyled點拿掉 -->
-								<li class="col text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入我的最愛商品"
-										class="text-green fs-5 pt-1">
-										<i class="bi bi-suit-heart-fill"></i>
-										<span class="d-none">我的最愛商品</span>
-									</a>
-								</li>
-								<li
-									class="border-start border-end border-dark py-1 col-6 text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入購物車"
-										class="text-green fs-5">
-										<i class="bi bi-cart-plus"></i>
-										<span class="d-none">加入購物車</span>
-									</a>
-								</li>
-								<li class="col text-center">
-									<a href="#" title="點擊前往商品說明頁" class="text-green fs-5 pt-1">
-										<i class="bi bi-info-circle-fill"></i>
-										<span class="d-none">商品說明頁</span>
-									</a>
-								</li>
-							</ul>
-							<!-- rounded-pill圓角 -->
-						</div>
-						<div class="card-body text-darkred text-center">
-							<h3 class="card-title h5">洛神烏梅</h3>
-							<div class="card-text fst-italic">
-								<span class="sale fs-4 p-2 text-green">55</span>
-							</div>
-						</div>
-					</div>
-				</div>
+
 			</div>
 			<!-- 連結 -->
 			<div class="mt-3 text-center">
