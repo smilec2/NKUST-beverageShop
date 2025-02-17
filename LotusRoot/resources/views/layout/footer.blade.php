@@ -8,7 +8,7 @@
                     <!-- Logo -->
                     <div class="text-lg-center mb-3">
                         <a href="index.html" title="首頁">
-                            <img class="col-4" src="assets/images/Logo.svg" alt="蓮藕大王鼎中店(正哥)" />
+                            <img class="col-4" src="{{ asset('assets/images/Logo.svg') }}" alt="蓮藕大王鼎中店(正哥)" />
                         </a>
                     </div>
                     <!-- 社群 Logo -->

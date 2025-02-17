@@ -1,17 +1,18 @@
 <!-- 主選單 -->
 <nav class="navbar navbar-expand-lg bgc-lotus-a-nav shadow-sm position-sticky top-0 z-3">
     <div class="container">
-        <h1 class="mb-0 d-inline-block col-lg-2 p-lg-3 ">
+        <h1 class="mb-0 d-inline-block col-lg-2 p-lg-3 col-md-2">
             <a class="navbar-brand me-0 " href="index.html" title="回 首頁">
                 <img
                     class="d-md-inline-block d-none col-8"
-                    src="assets/images/Logo.svg"
+                    src="{{ asset('assets/images/Logo.svg') }}"
                     alt="蓮藕大王鼎中店(正哥)" />
                 <span class="d-md-none d-inline-block text-darkred">
                     蓮藕大王鼎中店(正哥)
                 </span>
             </a>
         </h1>
+
         <!-- 平板、手機 -->
         <div class="search-btn d-lg-none d-inline-block ms-auto">
             <button
