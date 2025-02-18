@@ -22,13 +22,14 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('upload_product');
+        $products = Product::all(); //取得所有輸入資料
+        // dd($products);      
+        return view('manage.revise_product',compact("products"));
+        // print_r($products);
     }
 
     public function store(Request $request)
     {
-        
-
         $validator = Validator::make($request->all(), [
             'product_name' => 'required|max:255',
             'description' => 'required|max:255',
