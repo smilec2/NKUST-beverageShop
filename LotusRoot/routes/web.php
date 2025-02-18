@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 //首頁
 Route::get('/',  "App\Http\Controllers\ProductController@indexForMainPage");
+
 //Menu
 Route::get('/menu', function () {
     return view('menu');
@@ -25,10 +26,9 @@ Route::group(['prefix' => 'user'], function () {
 Route::get("products", 'App\Http\Controllers\ProductController@index');
 
 //使用者
-
 Route::group(['prefix' => 'product'], function () {
-    Route::get("/", "App\Http\Controllers\ProductController@indexForMainPage");
-    // Route::post("create", "App\Http\Controllers\ProductController@store");
+    Route::get("/", "App\Http\Controllers\ProductController@index");
+    // gitRoute::post("create", "App\Http\Controllers\ProductController@store");
 });
 
 
