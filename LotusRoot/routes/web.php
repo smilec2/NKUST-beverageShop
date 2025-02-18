@@ -20,6 +20,10 @@ Route::group(['prefix' => 'user'], function () {
             'signup',
             'App\Http\Controllers\UserAuthController@SignUpProcess'
         );
+        Route::post(
+            'signin',
+            'App\Http\Controllers\UserAuthController@SignInProcess'
+        );
     });
 });
 
