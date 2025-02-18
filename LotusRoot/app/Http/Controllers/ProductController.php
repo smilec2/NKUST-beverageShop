@@ -11,8 +11,7 @@ class ProductController extends Controller
 {
     public function indexForMainPage()
     {
-        $products = Product::find(13);
-        return view('index', compact('products'));
+        return view('product.onlineshop');
     }
     public function index()
     {

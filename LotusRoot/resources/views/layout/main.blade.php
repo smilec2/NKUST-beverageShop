@@ -61,6 +61,14 @@
 			// 燈箱
 			Fancybox.bind("[data-fancybox]", {});
 		</script>
+		<!-- 分類、過濾 -->
+		<script src="{{ asset('/assets/js/filterizr-master/dist/jquery.filterizr.min.js') }}"></script>
+		<script>
+			$(".filter-area").filterizr();
+			$(".filter-btn li").click(function () {
+				$(this).addClass("active").siblings().removeClass("active");
+			});
+		</script>
 	</body>
 </html>
 

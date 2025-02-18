@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg bgc-lotus-a-nav shadow-sm position-sticky top-0 z-3">
     <div class="container">
         <h1 class="mb-0 d-inline-block col-lg-2 p-lg-3 col-md-2">
-            <a class="navbar-brand me-0 " href="index.html" title="回 首頁">
+            <a class="navbar-brand me-0 " href="/" title="回 首頁">
                 <img
                     class="d-md-inline-block d-none col-8"
                     src="{{ asset('assets/images/Logo.svg') }}"
@@ -12,7 +12,6 @@
                 </span>
             </a>
         </h1>
-
         <!-- 平板、手機 -->
         <div class="search-btn d-lg-none d-inline-block ms-auto">
             <button
@@ -73,7 +72,7 @@
         <div class="collapse navbar-collapse" id="main-menu">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#about" title="前往 關於蓮藕大王"
+                    <a class="nav-link" href="/#about" title="前往 關於蓮藕大王"
                         >關於蓮藕大王</a
                     >
                 </li>
@@ -88,37 +87,37 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="#activity" title="前往 餐車活動"
+                            <a class="dropdown-item" href="/#activity" title="前往 餐車活動"
                                 >餐車活動</a
                             >
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#holiday" title="前往 休假公告"
+                            <a class="dropdown-item" href="/#holiday" title="前往 休假公告"
                                 >休假公告</a
                             >
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#new-product" title="前往 最新商品"
+                    <a class="nav-link" href="/#new-product" title="前往 最新商品"
                         >最新商品
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="menu.html" title="前往 菜單MENU">菜單MENU</a>
+                    <a class="nav-link" href="menu" title="前往 菜單MENU">菜單MENU</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="onlineshop.html" title="前往 線上購物"
+                    <a class="nav-link" href="/product" title="前往 線上購物"
                         >線上購物
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#contact-us" title="前往 聯絡我們"
+                    <a class="nav-link" href="/#contact-us" title="前往 聯絡我們"
                         >聯絡我們</a
                     >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#subscribe" title="前往 訂閱"
+                    <a class="nav-link" href="#subscribe" title="前往 訂閱"
                         >訂閱</a
                     >
                 </li>
