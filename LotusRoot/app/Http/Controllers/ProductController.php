@@ -122,6 +122,8 @@ class ProductController extends Controller
             $filePath = storage_path('app/public/' . $product->image_url);
             if (file_exists($filePath)) {
                 unlink($filePath); // 刪除檔案
+                $product->delete();
+                return redirect("/manage/product/create")->with('success', '產品刪除成功！');
             } else {
                 $product->delete();
                 return redirect("/manage/product/create")->with('success', '產品刪除成功！');
