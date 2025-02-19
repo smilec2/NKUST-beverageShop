@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //Model
 use App\Models\Product;
 
+
 class ProductController extends Controller
 {
     public function indexForMainPage()
@@ -62,13 +63,55 @@ class ProductController extends Controller
             'has_sugar' => $request->has_sugar,
         ]);
     
-        return redirect()->route('index')->with('success', '產品新增成功！');
+        return redirect("/manage/product/create")->with('success', '產品新增成功！');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        //
+        //先取得對應的資料庫欄位資料
+        $product = Product::find($id);
+        // dd($product);
+        //驗證輸入資料
+        $validator = Validator::make($request->all(), [
+            'product_name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'price' => 'required|numeric|min:1',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|numeric|min:1',
+            "has_sugar" => 'required|boolean',
+        ]);
+
+        //如果驗證失敗，返回錯誤訊息
+        if ($validator->fails()) {
+            return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        // 上傳圖片處理
+        if ($request->hasFile("image_url")) {
+            //刪除舊相片
+            $filePath = storage_path('app/public/' . $product->image_url);
+            if (file_exists($filePath)) {
+                unlink($filePath); // 刪除檔案
+            } else {
+                dd('檔案不存在');
+            }
+            //上傳新相片
+            $path = $request->file("image_url")->store("products", "public");
+            $product->image_url = $path;
+        }
+
+        // 更新資料庫
+        $product->product_name = $request->product_name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->has_sugar = $request->has_sugar;
+        $product->save();
+
+        
+        return redirect("/manage/product/create")->with('success', '產品更新成功！');
     }
-
-
 }

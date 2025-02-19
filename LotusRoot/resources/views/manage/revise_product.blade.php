@@ -106,8 +106,10 @@
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="" method="post" enctype="multipart/form-data">
+				<form method="post" enctype="multipart/form-data" id="edit_product_form">
 					@csrf
+					<!-- 使用put方法 -->
+					@method('PUT')
 					<div class="mb-3">
 						<label for="product_name" class="form-label">商品名稱</label>
 						<input
@@ -146,7 +148,7 @@
 							class="form-control"
 							id="edit_image"
 							name="image_url"
-							required />
+							/>
 					</div>
 					<div class="mb-3">
 						<label for="category" class="form-label">分類</label>
@@ -171,6 +173,12 @@
 		</div>
 	</div>
 </div>
+<!-- 顯示成功訊息 -->
+@if (session('success'))
+    <script>
+        alert('{{ session("success") }}');
+    </script>
+@endif
 
 
 @include("component.create_product")
