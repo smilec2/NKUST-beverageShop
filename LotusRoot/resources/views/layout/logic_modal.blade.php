@@ -65,18 +65,18 @@
         const passwordInput = document.getElementById("password");
         const confirmPasswordInput = document.getElementById("confirm_password");
 
+        //點擊註冊按鈕，送出資料時
         form.addEventListener("submit", function(event) {
             event.preventDefault(); // 防止表單自動提交
 
+            //把表單裡的資料取出來
             const formData = {
                 name: nameInput.value,
                 email: emailInput.value,
                 phone_number: phoneNumberInput.value,
                 password: passwordInput.value,
-                password_confirmation: confirmPasswordInput.value,  // 確保這個欄位有傳送
+                password_confirmation: confirmPasswordInput.value,  
             };
-
-            // console.log(formData);  // 確認輸出的formData
 
             fetch("/user/auth/signup", {
                 method: "POST",
@@ -90,7 +90,6 @@
             .then(data => {
                 // 清空錯誤訊息
                 clearErrors();
-
                 if (data.success) {
                     alert("註冊成功！");
                     // 關閉彈出視窗
