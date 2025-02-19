@@ -95,9 +95,7 @@ class ProductController extends Controller
             $filePath = storage_path('app/public/' . $product->image_url);
             if (file_exists($filePath)) {
                 unlink($filePath); // 刪除檔案
-            } else {
-                dd('檔案不存在');
-            }
+            } 
             //上傳新相片
             $path = $request->file("image_url")->store("products", "public");
             $product->image_url = $path;
@@ -113,5 +111,23 @@ class ProductController extends Controller
 
         
         return redirect("/manage/product/create")->with('success', '產品更新成功！');
+    }
+
+    public function destroy($id)
+    {   //先取得對應的資料庫欄位資料
+        $product = Product::find($id);
+
+        //刪除相片
+        if (!$product->image_url == null) {
+            $filePath = storage_path('app/public/' . $product->image_url);
+            if (file_exists($filePath)) {
+                unlink($filePath); // 刪除檔案
+            } else {
+                $product->delete();
+            }
+        } else {
+            $product->delete();
+        return redirect("/manage/product/create")->with('success', '產品刪除成功！');
+        }
     }
 }
