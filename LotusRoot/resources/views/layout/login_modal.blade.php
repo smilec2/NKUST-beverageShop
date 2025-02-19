@@ -1,4 +1,5 @@
 <!-- 登入表單 -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div
     class="modal fade"
     id="exampleModal"
@@ -20,12 +21,13 @@
             <div class="text-center justify-content-center">
                 <div class="modal-body h3 py-4 text-darkred">會員登入</div>
                 <div class="modal-body">
-                    <form action="#" method="post" class="px-3">
+                    <form action="/user/auth/signin" method="post" class="px-3">
+                        @csrf
                         <div class="mb-3">
                             <input
                                 class="form-control"
                                 type="text"
-                                name="account"
+                                name="email"
                                 placeholder="請輸入帳號"
                                 required />
                         </div>
@@ -80,7 +82,7 @@
                                     id="btn-switch-register"
                                     href="javascript:;"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#exampleModalRegister"
+                                    data-bs-target="#ModalRegister"
                                     >我要註冊</a
                                 >
                             </div>
@@ -109,3 +111,58 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form[action='/user/auth/signin']");
+        const emailInput = form.querySelector("input[name='email']");
+        const passwordInput = form.querySelector("input[name='password']");
+        const rememberMeInput = form.querySelector("input#rememberMe");
+        const errorContainer = document.createElement("div"); // 錯誤訊息容器
+        form.appendChild(errorContainer);
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // 阻止表單提交
+
+            const formData = {
+                email: emailInput.value,
+                password: passwordInput.value,
+                rememberMe: rememberMeInput.checked ? "on" : "off"
+            };
+
+            fetch("/user/auth/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                errorContainer.innerHTML = ""; // 清空錯誤訊息
+
+                if (data.success) {
+                    alert("登入成功！");
+                    window.location.href = "/"; // 登入成功跳轉
+                } else {
+                    displayErrors(data.errors); // 顯示具體的錯誤訊息
+                }
+            })
+            .catch(error => {
+                console.error("請求失敗", error);
+                errorContainer.innerHTML = "<p class='text-danger'>登入發生錯誤，請稍後再試。</p>";
+            });
+        });
+
+        function displayErrors(errors) {
+            errorContainer.innerHTML = ""; // 清空錯誤訊息
+            for (const key in errors) {
+                const errorMsg = document.createElement("p");
+                errorMsg.textContent = errors[key]; // 根據後端傳來的錯誤顯示對應訊息
+                errorMsg.classList.add("text-danger", "small");
+                errorContainer.appendChild(errorMsg);
+            }
+        }
+    });
+</script>

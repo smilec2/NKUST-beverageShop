@@ -139,18 +139,30 @@
                 <!-- 電腦版的會員及購物車 -->
                 <li class="nav-item d-lg-block d-none">
                     <div class="d-flex me-sm-0 align-items-center">
-                        <!-- 會員 -->
-                        <div>
-                            <a
-                                class="text-darkred nav-link"
-                                href="javascript:;"
-                                title="點擊"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                <i class="bi bi-person"></i>
-                                <span class="text-darkred d-md-inline-block d-none">登入</span>
-                            </a>
-                        </div>
+                    <!-- 會員 -->
+                        {{ csrf_field() }}
+                        @if (session()->has('user_id'))
+                            <div>
+                                <a class="text-darkred nav-link"
+                                    href="{{ route('signout') }}"
+                                    title="點擊"
+                                    >
+                                    <i class="bi bi-person"></i>
+                                    <span class="text-darkred d-md-inline-block d-none" >登出</span>
+                                </a>
+                            </div>
+                        @else
+                            <div>
+                                <a class="text-darkred nav-link"
+                                    href="javascript:;"
+                                    title="點擊"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    <i class="bi bi-person"></i>
+                                    <span class="text-darkred d-md-inline-block d-none">登入</span>
+                                </a>
+                            </div>
+                        @endif
                         <!-- 購物車 -->
                         <div class="cart-btn">
                             <a
