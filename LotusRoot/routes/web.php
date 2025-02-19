@@ -41,5 +41,6 @@ Route::group(['prefix' => 'manage'], function () {
     Route::group(["prefix" => "product"], function () {
         Route::get("create", "App\Http\Controllers\ProductController@create");
         Route::post("create", "App\Http\Controllers\ProductController@store");
+        Route::post("create", "App\Http\Controllers\ProductController@update");
     });
 });

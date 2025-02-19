@@ -65,5 +65,10 @@ class ProductController extends Controller
         return redirect()->route('index')->with('success', '產品新增成功！');
     }
 
+    public function update(Request $request)
+    {
+        //
+    }
+
 
 }

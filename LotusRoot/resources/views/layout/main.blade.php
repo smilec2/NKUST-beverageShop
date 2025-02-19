@@ -69,6 +69,30 @@
 				$(this).addClass("active").siblings().removeClass("active");
 			});
 		</script>
+		<!-- 編輯商品Modal -->
+		<script>
+			document.querySelectorAll(".edit-btn").forEach(button => {
+				button.addEventListener("click", function() {
+					//取得商品資料 
+					const productItem = this.closest(".edit_product_item");
+					const productId =  productItem.dataset.id;
+					const productProductName =  productItem.dataset.product_name;
+					const productDescription =  productItem.dataset.description;
+					const productPrice =  productItem.dataset.price;
+					const productImageurl =  productItem.dataset.image_url;
+					const productCategoryId =  productItem.dataset.category_id;
+					const productHasSugar =  productItem.dataset.has_sugar;
+
+					//填入商品資料到 Modal
+					document.getElementById("edit_product_name").value = productProductName;
+					document.getElementById("edit_description").value = productDescription;
+					document.getElementById("edit_price").value = productPrice;
+					document.getElementById("product_image_preview").src = productImageurl;
+					document.getElementById("edit_category").value = productCategoryId;
+					document.getElementById("edit_has_sugar").value = productHasSugar;
+				})
+			})
+		</script>
 	</body>
 </html>
 
