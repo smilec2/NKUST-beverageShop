@@ -124,10 +124,11 @@ class ProductController extends Controller
                 unlink($filePath); // 刪除檔案
             } else {
                 $product->delete();
+                return redirect("/manage/product/create")->with('success', '產品刪除成功！');
             }
         } else {
             $product->delete();
-        return redirect("/manage/product/create")->with('success', '產品刪除成功！');
+            return redirect("/manage/product/create")->with('success', '產品刪除成功！');
         }
     }
 }
