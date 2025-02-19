@@ -12,18 +12,11 @@ Route::get('/menu', function () {
 
 Route::group(['prefix' => 'user'], function () {
     Route::group(['prefix' => 'auth'], function () {
-        Route::get(
-            'signup',
-            'App\Http\Controllers\UserAuthController@SignUpPage'
-        );
-        Route::post(
-            'signup',
-            'App\Http\Controllers\UserAuthController@SignUpProcess'
-        );
-        Route::post(
-            'signin',
-            'App\Http\Controllers\UserAuthController@SignInProcess'
-        );
+
+        Route::post('signup', 'App\Http\Controllers\UserAuthController@SignUpProcess');
+        Route::post('signin', 'App\Http\Controllers\UserAuthController@SigninProcess');
+        Route::get('signout', 'App\Http\Controllers\UserAuthController@SignOut')->name('signout');
+        
     });
 });
 
