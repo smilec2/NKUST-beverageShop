@@ -1,7 +1,7 @@
 
 
 <!-- 註冊表單 -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <div class="modal fade" id="ModalRegister" tabindex="-1" aria-labelledby="ModalRegisterLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -77,7 +77,8 @@
                 password: passwordInput.value,
                 password_confirmation: confirmPasswordInput.value,  
             };
-
+            //用fetch API 送出資料
+            //模擬表單送出資料 post方法，按鈕也可以用這個方法
             fetch("/user/auth/signup", {
                 method: "POST",
                 headers: {
@@ -86,19 +87,24 @@
                 },
                 body: JSON.stringify(formData), // 把表單資料轉換成 JSON 格式
             })
+            //取得http response
+            //這裡已經跟後端去溝通了
             .then(response => response.json())
+            //取得後端回傳的資料
             .then(data => {
                 // 清空錯誤訊息
                 clearErrors();
+                // 註冊成功就彈出顯示成功訊息
                 if (data.success) {
                     alert("註冊成功！");
-                    // 關閉彈出視窗
                     $('#ModalRegister').modal('hide');
                 } else {
-                    // 顯示錯誤訊息
+                    //失敗就顯示錯誤訊息
+                    //data.errors 裝的是後端回傳的錯誤訊息 errors，是一個array
                     displayErrors(data.errors);
                 }
             })
+            //如果是server端發生錯誤，就會進到這個catch
             .catch(error => {
                 console.error("錯誤:", error);
                 alert("註冊發生錯誤，請稍後再試！");
@@ -107,10 +113,15 @@
 
         // 顯示錯誤訊息
         function displayErrors(errors) {
+            //用迴圈取得每一個錯誤訊息
             for (const field in errors) {
+                //取得錯誤訊息的元素<div class = error-name></div>"">
                 const errorElement = document.getElementById(`error-${field}`);
+                //如果有這個元素就把錯誤訊息放進去
                 if (errorElement) {
-                    errorElement.innerText = errors[field].join(', ');
+                    //如果錯誤訊息不止一條，用<br>分開
+                    const formattedErrors = errors[field].split(",").join('<br>');
+                    errorElement.innerHTML = formattedErrors;
                 }
             }
         }

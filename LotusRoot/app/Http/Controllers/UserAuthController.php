@@ -23,20 +23,47 @@ class UserAuthController extends Controller
        // 獲取所有資料
         $input = $request->all();
 
+         //客製化錯誤訊息
+        $messages = [
+            "name.required" => "請輸入姓名",
+            "email.required" => "請輸入電子郵件",
+            "email.email" => "請輸入有效的電子郵件",
+            "email.unique" => "此電子郵件已被註冊",
+            "phone_number.required" => "請輸入手機號碼",
+            "phone_number.regex" => "請輸入有效的手機號碼",
+            "password.required" => "請輸入密碼",
+            "password.min" => "密碼至少要有6個字元",
+            "password.confirmed" => "密碼與確認密碼不一致",
+            "password.regex" => "密碼至少要有一個大寫字母"
+        ];
+
        // 驗證資料
         $validator = Validator::make($input, [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required|regex:/^[0-9]{10}$/',
             'password' => 'required|min:6|confirmed|regex:/[A-Z]/', // 確保 password 和 confirm_password 一致
-        ]);
+        ], $messages);
+
 
        // 驗證失敗時，返回錯誤訊息
         if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()->toArray()
-           ], 400);  // 400 是驗證錯誤代碼
+            $errors = $validator->errors();
+            $customErrors = [];
+
+            foreach ($errors->messages() as $field =>$messages) {
+                $customErrors[$field] = implode(",", $messages);
+            };
+
+            return response() ->json([
+                "success" => false,
+                "errors" => $customErrors
+            ], 400);
+
+
+
+
+            
         }
 
         // 密碼加密
@@ -56,8 +83,6 @@ class UserAuthController extends Controller
                 'message' => '註冊成功'
             ]);
         } catch (\Exception $e) {
-           // 擴展錯誤捕捉，打印具體錯誤
-            \Log::error('註冊過程錯誤:', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             return response()->json([
                 'success' => false,
                 'message' => '註冊發生錯誤，請稍後再試。',
