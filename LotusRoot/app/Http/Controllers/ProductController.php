@@ -12,12 +12,12 @@ class ProductController extends Controller
 {
     public function indexForMainPage()
     {
-        $products = Product::find(13);
+        $products = Product::all();
         return view('index', compact('products'));
     }
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::all();
         return view('product.onlineShop', compact('products'));
     }
 

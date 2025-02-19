@@ -1,3 +1,4 @@
+/* 設定最大寬度為991像素時(用於小於或=991時) */
 @media (max-width: 991px) {
 	#cart-list-form thead {
 		display: none;
@@ -44,9 +45,26 @@
 		right: 0;
 		top: 0;
 	}
-	
-} 
+}
 /* 原本要調整數量的數字
 	.min-width-60 {
 		width: 60px !important; /* 根據需要調整手機板上的最小寬度 */
-	
+/* 手機版設定 */
+@media (max-width: 767px) {
+	.sticky-search {
+		top: 60px; /* 手機版的 navtop 設定 */
+	}
+}
+/* 平板版設定  適用於最小為768;最大為1023*/
+@media (min-width: 768px) and (max-width: 1023px) {
+	.sticky-search {
+		top: 142px; /* 平板版的 top 設定 */
+	}
+}
+
+/* 電腦版設定 適用大於1024或=1024*/
+@media (min-width: 1024px) {
+	.sticky-search {
+		top: 242px; /* 電腦版的 top 設定與 navbar 保持一致  */
+	}
+}

@@ -391,10 +391,11 @@
 			</div>
 			<!-- 商品列 -->
 			<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-4">
+				@foreach($products as $product)
 				<div class="col">
 					<div class="card h-100">
 						<div class="position-relative overflow-hidden" style="margin: auto;">
-							<img src="{{ asset('storage/' . $products->image_url) }}" class="card-img-top" alt="手熬薏仁湯" />
+							<img src="{{ asset('storage/' . $product->image_url) }}" class="card-img-top" alt="手熬薏仁湯" />
 							<span
 								class="position-absolute top-0 end-0 bg-warning px-3 mt-2 me-2 rounded-pill text-uppercase"
 								>sale</span
@@ -434,9 +435,9 @@
 						</div>
 						<div class="card-body text-darkred text-center">
 
-							<h3 class="card-title h5">{{$products->product_name}}</h3>
+							<h3 class="card-title h5">{{$product->product_name}}</h3>
 							<div class="card-text fst-italic">
-								<span class="sale fs-4 p-2 text-green">{{$products->price}}</span>
+								<span class="sale fs-4 p-2 text-green">{{$product->price}}</span>
 								<!-- <del>55</del> del標籤刪除線 -->
 								<!-- <span class="text-decoration-line-through p-2">55</span> -->
 								<!-- text-decoration-line-through 刪除線 -->
@@ -444,6 +445,7 @@
 						</div>
 					</div>
 				</div>
+				@endforeach
 
 			</div>
 			<!-- 連結 -->

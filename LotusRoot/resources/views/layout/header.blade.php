@@ -104,7 +104,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="menu" title="前往 菜單MENU">菜單MENU</a>
+                    <a class="nav-link" href="/menu" title="前往 菜單MENU">菜單MENU</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/product" title="前往 線上購物"

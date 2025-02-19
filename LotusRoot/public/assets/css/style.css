@@ -165,11 +165,11 @@ a.nav-link:hover {
 	content: "NT$";
 	padding-right: 0.1rem;
 }
-#new-product .card-text span::after {
+/* #new-product .card-text span::after {
 	content: "元";
 	padding-left: 0.1rem;
 	font-size: 15px;
-}
+} */
 /* -------------- */
 /* 線上購物 */
 #onlineshop-page .card ul {
@@ -183,11 +183,6 @@ a.nav-link:hover {
 #onlineshop-page .card-text span::before {
 	content: "NT$";
 	padding-right: 0.1rem;
-}
-#onlineshop-page .card-text span::after {
-	content: "元";
-	padding-left: 0.1rem;
-	font-size: 15px;
 }
 
 /* -------------- */
@@ -241,7 +236,7 @@ a.nav-link:hover {
 /* 社群logo */
 .social-icon li:last-of-type,
 .filter-btn li:last-of-type {
-	margin-right: 0;
+	margin-right: 0 !important;
 }
 /* -------------- */
 /* menu */
@@ -294,11 +289,33 @@ a.nav-link:hover {
 #cart-list-form th:not(th:last-of-type):not(th:first-of-type) {
 	border-right: 2px solid #84b78e;
 }
+
+/* 產品說明的select */
+.form-select{
+	flex-grow: 1;
+	text-align: center;
+	text-align-last: center;
+}
+
+
+/* 產品說明的-+按鈕 */
 .plus-btn,
 .dash-btn {
 	width: 30px;
 	height: 30px;
 }
+
+.btn.dash-btn,
+.btn.plus-btn {
+	background-color: transparent;
+}
+
+
+.btn.dash-btn i:hover,
+.btn.plus-btn i:hover {
+	color:rgb(255, 0, 0);
+}
+
 
 /* .plus-btn i,
 .dash-btn i{
@@ -311,16 +328,17 @@ a.nav-link:hover {
 /* #cart-list-form table{
 	--bs-table-bg:transparent!important;
 }  table的顏色下方的tr顏色*/
+
 /* 結帳 */
 #cart-list-page .card-money-text::before {
 	content: "NT$";
 	padding-right: 0.1rem;
 }
-#cart-list-page .card-money-text::after {
+/* #cart-list-page .card-money-text::after {
 	content: "元";
 	padding-left: 0.1rem;
 	font-size: 15px;
-}
+} */
 /* -------------- */
 /* 商品說明頁 */
 /* 價錢 */
@@ -328,3 +346,26 @@ a.nav-link:hover {
 	content: "NT$";
 	padding-right: 0.1rem;
 }
+
+.onlineshop-icon-ul {
+	margin-bottom: 0;
+}
+
+/* 搜尋表單提整 */
+.sticky-search {
+	position: fixed; /* 改用 fixed 讓它一直黏住 */
+	/* top: 160px; 讓它與 navbar 保持一致(設定在media) */
+	left: 0;
+	width: 100%; /* 確保搜尋欄寬度跟 nav 一樣 */
+	z-index: 100; /* 確保它不會被其他內容蓋住 */
+	background-color: rgb(180, 172, 211, 0.5); /* 避免透明導致內容重疊 */
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 添加陰影增加層次感 */
+	padding: 10px 0;
+	display: none; /* 預設隱藏，展開時才顯示 */
+}
+
+/* 當搜尋欄展開時，讓它變為可見 */
+#search-area.show {
+	display: block;
+}
+
