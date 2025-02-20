@@ -60,7 +60,7 @@
 									class="form-select border-1 bg-transition text-darkred rounded my-4"
 									name="sweetness"
 									aria-label="select-list">
-									<option value="1" selected>無</option>
+									<option value="1" selected>固定</option>
 									<option value="2">微</option>
 									<option value="3">半</option>
 									<option value="4">正常</option>
