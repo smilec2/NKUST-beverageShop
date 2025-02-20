@@ -22,9 +22,6 @@ Route::group(['prefix' => 'user'], function () {
 Route::get('/google/auth' ,'App\Http\Controllers\SocialiteController@redirectToProvider')->name('redirectToProvider');
 Route::get('/google/auth/callback' ,'App\Http\Controllers\SocialiteController@handleProviderCallback')->name('handleProviderCallback');
 
-
-Route::get("products", 'App\Http\Controllers\ProductController@index');
-
 //使用者
 Route::group(['prefix' => 'product'], function () {
     Route::get("/", "App\Http\Controllers\ProductController@index");
@@ -33,6 +30,13 @@ Route::group(['prefix' => 'product'], function () {
     Route::get('onlineShop', 'App\Http\Controllers\ProductController@onlineShop')->name('product.onlineShop');
 });
 
+//購物車
+Route::group(['prefix' => 'cart'], function () {
+    Route::get('/', 'App\Http\Controllers\CartController@index');
+    Route::post('add', 'App\Http\Controllers\CartController@add');
+    Route::put('update', 'App\Http\Controllers\CartController@update');
+    Route::delete('delete', 'App\Http\Controllers\CartController@destroy');
+});
 
 //管理者
 Route::group(['prefix' => 'manage'], function () {
