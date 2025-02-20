@@ -38,7 +38,6 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://lotusroot.com/google/auth/callback',
+        'redirect' => 'http://LotusRootTea.com/google/auth/callback',
     ],
-
 ];
