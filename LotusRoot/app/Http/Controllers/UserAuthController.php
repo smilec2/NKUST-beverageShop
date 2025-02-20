@@ -12,12 +12,8 @@ use Illuminate\Support\Facades\Mail;
 class UserAuthController extends Controller
 {
 
-    public function SignUpPage()
-    {
-       //
-    }
 
-    // 註冊
+    // 註冊邏輯
     public function SignUpProcess(Request $request)
     {
        // 獲取所有資料
@@ -92,10 +88,12 @@ class UserAuthController extends Controller
     }
 
      // 登入邏輯
-    public function SignInProcess(Request $request)
+     public function SignInProcess(Request $request)
     {
-        // 輸出收到的請求資料
+        // 取得 email 和 password
         $input = $request->only('email', 'password');
+
+        // 檢查 email 和 password 是否為空
         if (empty($input['email']) || empty($input['password'])) {
             return response()->json([
                 'success' => false,
@@ -105,7 +103,11 @@ class UserAuthController extends Controller
                 ]
             ], 400);
         }
-        $tmpuser = User::where('email', $input['email'])->first(); 
+
+        // 透過 email 查詢使用者
+        $tmpuser = User::where('email', $input['email'])->first();
+
+        // 如果查無帳號，回傳錯誤訊息
         if (is_null($tmpuser)) {
             return response()->json([
                 'success' => false,
@@ -114,6 +116,8 @@ class UserAuthController extends Controller
                 ]
             ], 400);
         }
+
+        // 驗證密碼是否正確
         if (!Hash::check($input['password'], $tmpuser->password)) {
             return response()->json([
                 'success' => false,
@@ -122,16 +126,33 @@ class UserAuthController extends Controller
                 ]
             ], 400);
         }
+
+        // 設置 Session
         session()->put('user_id', $tmpuser->id);
+
+        // 判斷使用者類型，管理者 (A) 跳轉 /user/auth/test，會員 (G) 跳轉 /
+        $redirect_url = ($tmpuser->type === 'A') ? '/user/auth/test' : '/';
+
+        // 回傳登入成功及對應的跳轉網址
         return response()->json([
             'success' => true,
-            'message' => '登入成功'
+            'message' => '登入成功',
+            'redirect_url' => $redirect_url
         ]);
     }
 
+    // 清除 session 中的 user_id
     public function SignOut()
     {
-        session()->forget('user_id');  // 清除 session 中的 user_id
+        session()->forget('user_id');  
         return redirect('/');  // 登出後重定向回登入頁面
     }
+    // 測試管理員導入
+    public function Signtest() {
+        return view('layout.main'); 
+    }
+
+        
+
+    
 }

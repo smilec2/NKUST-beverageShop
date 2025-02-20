@@ -1,4 +1,5 @@
 <?php
+use App\Http\Middleware\AuthUserAdminMiddleware;
 
 use Illuminate\Support\Facades\Route;
 //首頁
@@ -12,6 +13,9 @@ Route::get('/menu', function () {
 //會員管理
 Route::group(['prefix' => 'user'], function () {
     Route::group(['prefix' => 'auth'], function () {
+        Route::get('test', 'App\Http\Controllers\UserAuthController@Signtest')
+             ->middleware(AuthUserAdminMiddleware::class);
+
         Route::post('signup', 'App\Http\Controllers\UserAuthController@SignUpProcess');
         Route::post('signin', 'App\Http\Controllers\UserAuthController@SigninProcess');
         Route::get('signout', 'App\Http\Controllers\UserAuthController@SignOut')->name('signout');
