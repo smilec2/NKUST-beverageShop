@@ -91,10 +91,10 @@
                             <img class="rounded-circle btn btn-light" src="assets/images/Google.svg" />
                         </a>
                         <a href="###" data-platform="facebook">
-                            <img class="rounded-circle btn btn-light" src="assets/images/fb.svg" />
+                            <img class="rounded-circle btn btn-light" src="assets/images/FB.svg" />
                         </a>
                         <a href="###" data-platform="Line">
-                            <img class="rounded-circle btn btn-light" src="assets/images/Line.svg" />
+                            <img class="rounded-circle btn btn-light" src="assets/images/line.svg" />
                         </a>
                     </div>
                 </div>
