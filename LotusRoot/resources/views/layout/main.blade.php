@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>蓮藕大王鼎中店(正哥)</title>
 		<!-- icon -->
 		<link rel="stylesheet" href="{{ asset('assets/images/Logo.svg') }}" />

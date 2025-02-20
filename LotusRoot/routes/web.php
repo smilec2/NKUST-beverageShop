@@ -9,10 +9,9 @@ Route::get('/menu', function () {
     return view('menu');
 });
 
-
+//會員管理
 Route::group(['prefix' => 'user'], function () {
     Route::group(['prefix' => 'auth'], function () {
-
         Route::post('signup', 'App\Http\Controllers\UserAuthController@SignUpProcess');
         Route::post('signin', 'App\Http\Controllers\UserAuthController@SigninProcess');
         Route::get('signout', 'App\Http\Controllers\UserAuthController@SignOut')->name('signout');
