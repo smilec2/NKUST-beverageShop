@@ -14,6 +14,8 @@
 
 5. 設定資料庫連線
 ```
+FILESYSTEM_DISK=public
+
 DB_CONNECTION=mysql //輸入自己使用的資料庫
 DB_HOST=127.0.0.1
 DB_PORT=3306
