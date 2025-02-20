@@ -105,22 +105,28 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // 取得表單與輸入欄位
         const form = document.querySelector("form[action='/user/auth/signin']");
         const emailInput = form.querySelector("input[name='email']");
         const passwordInput = form.querySelector("input[name='password']");
         const rememberMeInput = form.querySelector("input#rememberMe");
-        const errorContainer = document.createElement("div"); // 錯誤訊息容器
+
+        // 建立錯誤訊息容器
+        const errorContainer = document.createElement("div");
         form.appendChild(errorContainer);
 
+        // 監聽表單提交事件
         form.addEventListener("submit", function (event) {
-            event.preventDefault(); // 阻止表單提交
+            event.preventDefault(); // 阻止表單預設提交行為
 
+            // 取得表單輸入資料
             const formData = {
                 email: emailInput.value,
                 password: passwordInput.value,
                 rememberMe: rememberMeInput.checked ? "on" : "off"
             };
 
+            // 發送 AJAX 請求
             fetch("/user/auth/signin", {
                 method: "POST",
                 headers: {
@@ -129,15 +135,15 @@
                 },
                 body: JSON.stringify(formData),
             })
-            .then(response => response.json())
+            .then(response => response.json()) // 解析 JSON 回應
             .then(data => {
                 errorContainer.innerHTML = ""; // 清空錯誤訊息
 
                 if (data.success) {
                     alert("登入成功！");
-                    window.location.href = "/"; // 登入成功跳轉
+                    window.location.href = data.redirect_url; // 依據後端回應的網址進行跳轉
                 } else {
-                    displayErrors(data.errors); // 顯示具體的錯誤訊息
+                    displayErrors(data.errors); // 顯示錯誤訊息
                 }
             })
             .catch(error => {
@@ -146,14 +152,16 @@
             });
         });
 
+        // 顯示錯誤訊息
         function displayErrors(errors) {
             errorContainer.innerHTML = ""; // 清空錯誤訊息
             for (const key in errors) {
                 const errorMsg = document.createElement("p");
-                errorMsg.textContent = errors[key]; // 根據後端傳來的錯誤顯示對應訊息
+                errorMsg.textContent = errors[key];
                 errorMsg.classList.add("text-danger", "small");
                 errorContainer.appendChild(errorMsg);
             }
         }
     });
 </script>
+
