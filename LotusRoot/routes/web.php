@@ -18,6 +18,10 @@ Route::group(['prefix' => 'user'], function () {
         
     });
 });
+//google登入
+Route::get('/google/auth' ,'App\Http\Controllers\SocialiteController@redirectToProvider')->name('redirectToProvider');
+Route::get('/google/auth/callback' ,'App\Http\Controllers\SocialiteController@handleProviderCallback')->name('handleProviderCallback');
+
 
 Route::get("products", 'App\Http\Controllers\ProductController@index');
 
