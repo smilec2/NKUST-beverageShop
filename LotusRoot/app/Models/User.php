@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Cart;
 
 class User extends Model {
     // 資料表名稱
@@ -18,6 +19,11 @@ class User extends Model {
         "email",
         "password",
         "name",
-        "phone_number",
+        "phone_number"
     ];
-}
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+};
