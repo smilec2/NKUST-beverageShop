@@ -16,7 +16,8 @@ class Cart extends Model
         "user_id",
         "quantity",
         "sugar_level",
-        "cup_size"
+        "cup_size",
+        "price"
     ];
 
 

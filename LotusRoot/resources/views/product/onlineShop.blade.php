@@ -24,7 +24,32 @@
             class="filter-area row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-4 mx-0">
             @foreach($products as $product)
             <!-- 商品 -->
-            <div class="col text-center filtr-item py-3" data-category="{{ $product->category_id }}">
+            <!-- data-sugar = 0 固定甜度, category_id == 2 不能調整甜度-->
+            @if ($product->category_id == 2)
+            <div
+                class="col text-center filtr-item py-3 product-info" 
+                data-user_id = 1
+                data-product_id = "{{ $product->id }}"
+                data-quantity=1
+                data-sugar=0
+                data-size=1
+                data-price="{{ $product->price }}"
+                data-category="{{ $product->category_id }}"
+                >
+                <!-- data-sugar = 0 固定甜度, category_id == 2 不能調整甜度-->
+            @else 
+                <div
+                class="col text-center filtr-item py-3 product-info" 
+                data-user_id=1
+                data-product_id="{{ $product->id }}"
+                data-quantity=1
+                data-sugar=0
+                data-size=1
+                data-price="{{ $product->price }}"
+                data-category="{{ $product->category_id }}"
+                
+                >
+            @endif
                 <div class="card h-100 text-center">
                     <div class="position-relative overflow-hidden">
                         <a
@@ -48,13 +73,11 @@
                                 </a>
                             </li>
                             <li class="py-1 col-6 text-center">
-                                <a
-                                    href="javascript:;"
-                                    title="點擊加入購物車"
-                                    class="text-green fs-5">
+                                <button title="點擊加入購物車"
+                                    class="text-green fs-5 btn add-to-cart" style="background: transparent; color: #84b78e;">
                                     <i class="bi bi-cart-plus"></i>
                                     <span class="d-none">加入購物車</span>
-                                </a>
+                                </button>
                             </li>
                             <li class="col text-center">
                                 <a

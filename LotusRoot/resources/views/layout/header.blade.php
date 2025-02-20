@@ -166,7 +166,7 @@
                         <!-- 購物車 -->
                         <div class="cart-btn">
                             <a
-                                href="cart-list.html"
+                                href="/cart"
                                 title="前往 我的購物車"
                                 class="position-relative">
                                 <i class="bi bi-cart text-darkred"></i>

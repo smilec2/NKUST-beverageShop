@@ -97,6 +97,82 @@
 				})
 			})
 		</script>
+		<!-- 購物車按鈕-->
+		<script>
+		$(document).ready(function() {
+			//購物車按鈕
+			$( "button > i.bi-cart-plus" ).on( "click", function() {
+				$(this).toggleClass("bi-cart-plus bi-cart-plus-fill");
+			} );
+			$("#products li>i").on("click", function() {
+				$(this).toggleClass("active");
+			})
+		});
+		</script>
+		<!--加入購物車-->
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+			const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+			addToCartButtons.forEach(button => {
+				button.addEventListener("click", function () {
+					// 取得選項
+					const productItem = this.closest(".product-info");
+					const userId = productItem.dataset.user_id;
+					const productId = productItem.dataset.product_id; 
+					const quantity = productItem.dataset.quantity;
+					const sugar = productItem.dataset.sugar; 
+					const size = productItem.dataset.size; 
+					const price = productItem.dataset.price;  
+
+					// 構建表單資料
+					const formData = {
+						product_id: productId,
+						user_id: userId,
+						quantity: quantity,
+						sugar_level: sugar,
+						cup_size: size,
+						price: price
+					};
+					console.log(formData);
+
+					// 發送請求到後端
+					fetch("/cart/add", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content, // 確保發送 CSRF token
+						},
+						body: JSON.stringify(formData)
+					})
+					.then(response => response.json())
+					.then(data => {
+						if (data.success) {
+							alert("商品已成功加入購物車！");
+						} else {
+							alert("加入購物車時發生錯誤！");
+						}
+					})
+					.catch(error => {
+						console.error("錯誤:", error);
+						alert("發生錯誤，請稍後再試！");
+					});
+					// fetch('/cart/add')
+					// .then(response => response.text()) // 先用 text() 看看回傳什麼
+					// .then(data => {
+					// 	console.log(data); // 檢查回傳內容
+					// 	try {
+					// 	const jsonData = JSON.parse(data); // 如果確定是 JSON 再解析
+					// 	console.log(jsonData);
+					// 	} catch (error) {
+					// 	console.error('解析 JSON 失敗:', error);
+					// 	}
+					// })
+					// .catch(error => console.error('請求錯誤:', error));
+				});
+			});
+		});
+	</script>
 	</body>
 </html>
 
