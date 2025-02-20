@@ -20,6 +20,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('signin', 'App\Http\Controllers\UserAuthController@SigninProcess');
         Route::get('signout', 'App\Http\Controllers\UserAuthController@SignOut')->name('signout');
         
+        
     });
 });
 //google登入

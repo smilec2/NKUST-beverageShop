@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Socialite;
 
 class UserAuthController extends Controller
 {
