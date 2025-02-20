@@ -40,52 +40,44 @@
                                 required />
                         </div>
                         <div class="form-check">
-                            <div class="d-flex justify-content-center">
-                                <div class="form-check">
-                                    <input
-                                        class="form-check-input is-invalid ms-3"
-                                        type="checkbox"
-                                        value="記住我"
-                                        id="rememberMe"
-                                        aria-describedby="rememberMeFeedback" />
-                                    <label class="form-check-label" for="rememberMe"> 記住我 </label>
-                                </div>
-                                <div class="form-check">
-                                    <input
-                                        class="form-check-input is-invalid ms-3"
-                                        type="checkbox"
-                                        value="保持登入"
-                                        id="stayLoggedIn"
-                                        aria-describedby="stayLoggedInFeedback" />
-                                    <label class="form-check-label" for="stayLoggedIn"> 保持登入 </label>
-                                </div>
-                                <div class="form-check">
-                                    <input
-                                        class="form-check-input is-invalid ms-3"
-                                        type="checkbox"
-                                        value="忘記密碼"
-                                        id="forgotPassword"
-                                        aria-describedby="forgotPasswordFeedback" />
-                                    <label class="form-check-label" for="forgotPassword">
-                                        忘記密碼
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="mb-4 mt-3">
-                                <button class="btn btn-primary" type="submit">登入</button>
-                                <button class="btn btn-primary" type="reset">清除</button>
-                            </div>
-                            <div class="mt-4 text-darkred">
-                                還沒有帳號嗎？
-                                <a
-                                    id="btn-switch-register"
-                                    href="javascript:;"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#ModalRegister"
-                                    >我要註冊</a
-                                >
-                            </div>
-                        </div>
+									<div class="row col justify-content-center align-items-center">
+										<div class="form-check col-4 col-md-auto gx-1 text-start">
+											<input
+												class="form-check-input is-invalid ms-3"
+												type="checkbox"
+												value="記住我"
+												id="rememberMe"
+												aria-describedby="rememberMeFeedback" />
+											<label class="form-check-label" for="rememberMe"> 記住我 </label>
+										</div>
+										<div class="form-check col-4 col-md-3 gx-1 text-start">
+											<input
+												class="form-check-input is-invalid ms-3"
+												type="checkbox"
+												value="保持登入"
+												id="stayLoggedIn"
+												aria-describedby="stayLoggedInFeedback" />
+											<label class="form-check-label" for="stayLoggedIn"> 保持登入 </label>
+										</div>
+										<div class="form-check col-4 col-md-6 gx-md-1 text-start">
+											<a href="###" class="float-end">忘記密碼</a>
+										</div>
+									</div>
+									<div class="mb-4 mt-3">
+										<button class="btn btn-primary" type="submit">登入</button>
+										<button class="btn btn-primary" type="reset">清除</button>
+									</div>
+									<div class="mt-4 text-darkred">
+										還沒有帳號嗎？
+										<a
+											id="btn-switch-register"
+											href="javascript:;"
+											data-bs-toggle="modal"
+											data-bs-target="#exampleModalRegister"
+											>我要註冊</a
+										>
+									</div>
+								</div>
                     </form>
                     <div class="position-relative my-4 text-center">
                         <hr />
