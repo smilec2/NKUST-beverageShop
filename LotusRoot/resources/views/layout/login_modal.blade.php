@@ -110,9 +110,7 @@
         const emailInput = form.querySelector("input[name='email']");
         const passwordInput = form.querySelector("input[name='password']");
         const rememberMeInput = form.querySelector("input#rememberMe");
-
-        // 建立錯誤訊息容器
-        const errorContainer = document.createElement("div");
+        const errorContainer = document.createElement("div"); // 建立錯誤訊息容器
         form.appendChild(errorContainer);
 
         // 監聽表單提交事件
@@ -157,7 +155,7 @@
             errorContainer.innerHTML = ""; // 清空錯誤訊息
             for (const key in errors) {
                 const errorMsg = document.createElement("p");
-                errorMsg.textContent = errors[key];
+                errorMsg.textContent = errors[key]; // 將錯誤訊息寫入元素
                 errorMsg.classList.add("text-danger", "small");
                 errorContainer.appendChild(errorMsg);
             }

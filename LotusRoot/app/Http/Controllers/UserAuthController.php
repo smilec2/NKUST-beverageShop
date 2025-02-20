@@ -88,7 +88,7 @@ class UserAuthController extends Controller
     }
 
      // 登入邏輯
-     public function SignInProcess(Request $request)
+    public function SignInProcess(Request $request)
     {
         // 取得 email 和 password
         $input = $request->only('email', 'password');
