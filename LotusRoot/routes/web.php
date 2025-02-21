@@ -1,6 +1,6 @@
 <?php
 use App\Http\Middleware\AuthUserAdminMiddleware;
-
+use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Route;
 //首頁
 Route::get('/',  "App\Http\Controllers\ProductController@indexForMainPage");
@@ -19,6 +19,9 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('signup', 'App\Http\Controllers\UserAuthController@SignUpProcess');
         Route::post('signin', 'App\Http\Controllers\UserAuthController@SigninProcess');
         Route::get('signout', 'App\Http\Controllers\UserAuthController@SignOut')->name('signout');
+        Route::get('editProfileGet', 'App\Http\Controllers\UserAuthController@editProfileGet');
+        Route::post('editProfilePost', 'App\Http\Controllers\UserAuthController@editProfilePost')->name('editProfilePost');
+        Route::get('test123Get', 'App\Http\Controllers\UserAuthController@test123Get')->name('test123Get');
         
         
     });

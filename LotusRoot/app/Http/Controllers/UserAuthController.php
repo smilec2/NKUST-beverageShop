@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth; 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -9,6 +11,7 @@ use Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Socialite;
+
 
 class UserAuthController extends Controller
 {
@@ -132,7 +135,7 @@ class UserAuthController extends Controller
         session()->put('user_id', $tmpuser->id);
 
         // 判斷使用者類型，管理者 (A) 跳轉 /user/auth/test，會員 (G) 跳轉 /
-        $redirect_url = ($tmpuser->type === 'A') ? '/user/auth/test' : '/';
+        $redirect_url = ($tmpuser->type === 'A') ? '/user/auth/editProfileGet' : '/';
 
         // 回傳登入成功及對應的跳轉網址
         return response()->json([
@@ -152,7 +155,40 @@ class UserAuthController extends Controller
     public function Signtest() {
         return view('layout.main'); 
     }
+    // 會員更新頁面頁面
+    public function editProfileGet()
+    {
+        $userId = Session::get('user_id'); // 從 session 取得 user_id
 
+        if (!$userId) {
+            return redirect('/')->with('error', '請先登入');
+        }
+
+        $user = User::find($userId); // 用 user_id 查詢使用者資料
+
+        if (!$user) {
+            return redirect('/')->with('error', '找不到該使用者');
+        }
+
+        return view('layout.member', compact('user')); // 傳遞 $user 給 Blade
+    }
+    // 會員更新邏輯
+    public function editProfilePost(Request $request)
+    {
+        $user = User::find(session('user_id'));
+
+        if (!$user) {
+            return response()->json(['error' => '用戶不存在'], 404);
+        }
+
+        $user->name = $request->input('username');
+        $user->save();
+
+        return redirect()->route('test123Get')->with('success', '更新成功！');
+    }
+    public function test123Get() {
+        return view('layout.test123'); 
+    }
         
 
     
