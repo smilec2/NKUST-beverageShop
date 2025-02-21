@@ -28,7 +28,11 @@
             @if ($product->category_id == 2)
             <div
                 class="col text-center filtr-item py-3 product-info" 
-                data-user_id = 1
+                @if (session()->has('user_id'))
+                    data-user_id = "{{  session('user_id') }}"
+                @else
+                    data-user_id = 0
+                @endif
                 data-product_id = "{{ $product->id }}"
                 data-quantity=1
                 data-sugar=0
@@ -40,7 +44,11 @@
             @else 
                 <div
                 class="col text-center filtr-item py-3 product-info" 
-                data-user_id=1
+                @if (session()->has('user_id'))
+                    data-user_id = "{{ session('user_id') }}"
+                @else
+                    data-user_id = 0
+                @endif
                 data-product_id="{{ $product->id }}"
                 data-quantity=1
                 data-sugar=0
@@ -50,6 +58,7 @@
                 
                 >
             @endif
+            
                 <div class="card h-100 text-center">
                     <div class="position-relative overflow-hidden">
                         <a

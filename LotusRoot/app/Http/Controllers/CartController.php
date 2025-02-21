@@ -65,8 +65,28 @@ class CartController extends Controller
 
     public function add(Request $request) 
     {
+
         $productData = $request->all();
         // dd($productData);
+
+        //確認是否登入
+        if ($productData['user_id'] == 0) {
+            return response()->json([
+                'success' => false,
+                'message' => '請先登入'
+            ]);
+        }
+        //確認是否已經加入購物車
+        $cart = Cart::where('product_id', $productData['product_id'])
+            ->where('user_id', $productData['user_id'])
+            ->first();
+        if ($cart) {
+            return response()->json([
+                'success' => false,
+                'message' => '商品已經在購物車中'
+            ]);
+        }
+
         try {
             Cart::create($productData);
             return response()->json([

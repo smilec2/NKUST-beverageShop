@@ -149,8 +149,10 @@
 					.then(data => {
 						if (data.success) {
 							alert("商品已成功加入購物車！");
+						} else if (data.success === false) {
+							alert(data.message);
 						} else {
-							alert("加入購物車時發生錯誤！");
+							alert(data.message);
 						}
 					})
 					.catch(error => {
