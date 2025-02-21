@@ -173,19 +173,37 @@ class UserAuthController extends Controller
         return view('layout.member', compact('user')); // 傳遞 $user 給 Blade
     }
     // 會員更新邏輯
+    
     public function editProfilePost(Request $request)
     {
         $user = User::find(session('user_id'));
-
+    
         if (!$user) {
-            return response()->json(['error' => '用戶不存在'], 404);
+            return response()->json(['error' => '用戶不存在！'], 404);
         }
-
+    
+        // 驗證舊密碼是否正確
+        if (!Hash::check($request->input('password'), $user->password)) {
+            return response()->json(['error' => '舊密碼不正確！'], 400);
+        }
+    
+        // 更新用戶資料
         $user->name = $request->input('username');
+        $user->email = $request->input('email');
+        $user->phone_number = $request->input('mobile_phone');
+    
+        // 若有提供新密碼，則更新
+        if ($request->filled('dpassword')) {
+            $user->password = Hash::make($request->input('dpassword'));
+        }
+    
         $user->save();
-
-        return redirect()->route('test123Get')->with('success', '更新成功！');
+    
+        return response()->json(['success' => '更新成功！', 'redirect' => route('test123Get')]);
     }
+    
+
+    // 會員更新成到導入頁面
     public function test123Get() {
         return view('layout.test123'); 
     }

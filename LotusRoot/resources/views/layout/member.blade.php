@@ -10,10 +10,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
                 <div class="px-4 py-3 text-darkred h5">
-                    
+				
                     {{ csrf_field() }}
                     @if (session()->has('user_id'))
-                        <form action="{{ route('editProfilePost') }}" method="post" enctype="multipart/form-data" class="p-3">
+					<form id="editProfileForm" action="{{ route('editProfilePost') }}" method="post" enctype="multipart/form-data" class="p-3">
 						@csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">使用者名稱</label>
@@ -30,6 +30,7 @@
                                 <input type="tel" class="form-control" id="mobile_phone" name="mobile_phone" 
                                        value="{{ old('mobile_phone', $user->phone_number ?? '') }}" required />
                             </div>
+							<div id="error-messages"></div> <!-- 這裡會顯示錯誤 -->
 							<div class="mb-3">
 							<label for="detailed_address" class="form-label">舊密碼</label>
 							<input
@@ -60,27 +61,39 @@
     </div>
 </article>
 <script>
-    document.getElementById("editProfileForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // 阻止表單提交，改用 AJAX
+   document.getElementById("editProfileForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // 阻止表單提交，改用 AJAX
 
-        fetch("{{ route('editProfilePost') }}", {
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: document.getElementById("username").value
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert("更新成功！");
-            console.log(data); // 顯示伺服器回應
-        })
-        .catch(error => console.error("錯誤:", error));
-    });
+    let formData = new FormData(this);
+
+    fetch("{{ route('editProfilePost') }}", {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        let errorDiv = document.getElementById("error-messages");
+        errorDiv.innerHTML = ""; // 清空之前的錯誤訊息
+
+        if (data.error) {
+            // 顯示錯誤訊息
+            let errorMessage = document.createElement("p");
+            errorMessage.style.color = "red";
+            errorMessage.textContent = data.error;
+            errorDiv.appendChild(errorMessage);
+        } else if (data.success) {
+            alert(data.success);
+            window.location.href = data.redirect; // 成功後跳轉
+        }
+    })
+    .catch(error => console.error("錯誤:", error));
+});
 </script>
+
+
 
 @endsection
 
