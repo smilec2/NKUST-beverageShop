@@ -48,5 +48,6 @@ Route::group(['prefix' => 'manage'], function () {
         Route::post("create", "App\Http\Controllers\ProductController@store");
         Route::put("edit/{id}", "App\Http\Controllers\ProductController@update");
         Route::delete("{id}", "App\Http\Controllers\ProductController@destroy");
+        Route::get("success-order","App\Http\Controllers\ProductController@successOrder");
     });
 });

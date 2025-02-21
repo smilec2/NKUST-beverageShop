@@ -29,6 +29,12 @@ class ProductController extends Controller
         // print_r($products);
     }
 
+    public function successOrder()
+    {
+        // Return the success order view
+        return view('success_order');
+    }
+    
     public function description($id)
     {
         $product = Product::find($id); //取得所有輸入資料
