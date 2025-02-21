@@ -184,6 +184,11 @@ a.nav-link:hover {
 	content: "NT$";
 	padding-right: 0.1rem;
 }
+/* #onlineshop-page .card-text span::after {
+	content: "元";
+	padding-left: 0.1rem;
+	font-size: 15px;
+} */
 
 /* -------------- */
 /* 休假公告 */
@@ -334,11 +339,11 @@ a.nav-link:hover {
 	content: "NT$";
 	padding-right: 0.1rem;
 }
-/* #cart-list-page .card-money-text::after {
+#cart-list-page .card-money-text::after {
 	content: "元";
 	padding-left: 0.1rem;
 	font-size: 15px;
-} */
+}
 /* -------------- */
 /* 商品說明頁 */
 /* 價錢 */
@@ -368,4 +373,7 @@ a.nav-link:hover {
 #search-area.show {
 	display: block;
 }
-
+/* 商品詳細說明的換行 */
+.pre-line{
+	white-space: pre-line;
+}
