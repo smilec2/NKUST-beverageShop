@@ -20,7 +20,7 @@ Route::group(['prefix' => 'user'], function () {
         // 清除 session 中的 user_id
         Route::get('signout', 'App\Http\Controllers\UserAuthController@SignOut')->name('signout');
         // 變更會員資料頁面
-        Route::get('editProfileGet', 'App\Http\Controllers\UserAuthController@editProfileGet');
+        Route::get('editProfileGet', 'App\Http\Controllers\UserAuthController@editProfileGet')->name('editProfileGet');
         // 變更會員資料邏輯
         Route::post('editProfilePost', 'App\Http\Controllers\UserAuthController@editProfilePost')->name('editProfilePost');  
     });

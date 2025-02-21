@@ -90,7 +90,6 @@ class UserAuthController extends Controller
            ], 500);  // 500 是伺服器錯誤代碼
         }
     }
-
      // 登入邏輯
     public function SignInProcess(Request $request)
     {
@@ -131,8 +130,12 @@ class UserAuthController extends Controller
             ], 400);
         }
 
-        // 設置 Session
-        session()->put('user_id', $tmpuser->id);
+        session([
+            'user_id' => $tmpuser->id,
+            'user_type' => $tmpuser->type, // 'G' = 一般使用者, 'A' = 管理員
+        ]);
+
+       
 
         // 判斷使用者類型，管理者 (A) 跳轉 /user/auth/test，會員 (G) 跳轉 /
         $redirect_url = ($tmpuser->type === 'A') ? '/user/auth/editProfileGet' : '/';
