@@ -1,83 +1,214 @@
 /* 設定最大寬度為991像素時(用於小於或=991時) */
 @media (max-width: 991px) {
-    #cart-list-form thead {
-        display: none;
-    }
-    #cart-list-form table,
+	#cart-list-form thead {
+		display: none;
+	}
+	#cart-list-form table,
     /* #cart-list-form tr, */
     #cart-list-form td {
-        display: block;
-        border: none;
-    }
-    #cart-list-form tr {
-        display: flex;
-        flex-wrap: wrap;
-        position: relative;
-        border-bottom: 1px solid gray;
-    }
-    /* #cart-list-form tr:last-of-type { 
+		display: block;
+		border: none;
+	}
+	#cart-list-form tr {
+		display: flex;
+		flex-wrap: wrap;
+		position: relative;
+		border-bottom: 1px solid gray;
+	}
+	.card-money-text::before {
+		content: "NT$";
+		padding-right: 0.1rem;
+	}
+	/* #cart-list-form tr:last-of-type { 
         border:none;
     } */
 
-    /* 選取 */
-    #cart-list-form tr td:nth-of-type(1) {
-        flex: 0 0 5%;
-    }
-    /* 商品資料 */
-    #cart-list-form tr td:nth-of-type(2) {
-        flex: 0 0 94%;
-    }
-    /* 規格 */
-    #cart-list-form tr td:nth-of-type(3) {
-        flex: 0 0 30%;
-    }
-    /* 甜度*/
-    #cart-list-form tr td:nth-of-type(4) {
-        flex: 0 0 32%;
-    }
-    /* 數量 */
-    #cart-list-form tr td:nth-of-type(5) {
-        flex: 0 0 38%;
-    }
-    /* 小計 */
-    #cart-list-form tr td:nth-of-type(6) {
-        flex: 0 0 100%;
-    }
-    /* 變更 */
-    #cart-list-form tr td:nth-of-type(7) {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    #cart-list-page td span::before {
-        content: "NT$";
-        padding-right: 0.1rem;
-    }
+	/* 選取 */
+	#cart-list-form tr td:nth-of-type(1) {
+		flex: 0 0 5%;
+	}
+	/* 商品資料 */
+	#cart-list-form tr td:nth-of-type(2) {
+		flex: 0 0 94%;
+	}
+	/* 規格 */
+	#cart-list-form tr td:nth-of-type(3) {
+		flex: 0 0 30%;
+	}
+	/* 甜度*/
+	#cart-list-form tr td:nth-of-type(4) {
+		flex: 0 0 32%;
+	}
+	/* 數量 */
+	#cart-list-form tr td:nth-of-type(5) {
+		flex: 0 0 38%;
+	}
+	/* 小計 */
+	#cart-list-form tr td:nth-of-type(6) {
+		flex: 0 0 100%;
+	}
+	/* 變更 */
+	#cart-list-form tr td:nth-of-type(7) {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	#cart-list-page td span::before {
+		content: "NT$";
+		padding-right: 0.1rem;
+	}
+
+	#success-order-form tr {
+		display: flex;
+		flex-wrap: wrap;
+		position: relative;
+		border-bottom: 1px solid gray;
+	}
+	#success-order-form thead {
+		display: none;
+	}
+	#success-order-form table,
+	#success-order-form td {
+		display: block;
+		border: none;
+	}
+	.success-spec::before {
+		content: "規格:";
+		padding-right: 0.1rem;
+
+	}
+	.success-swe::before {
+		content: "甜度:";
+		padding-right: 0.1rem;
+	}
+	.success-num::before {
+		content: "數量:";
+		padding-right: 0.1rem;
+	}
+	.success-money-text::before {
+		content: "NT$";
+		padding-right: 0.1rem;
+	}
+
+	/* 商品資料 */
+	#success-order-form tr td:nth-of-type(1) {
+		flex: 0 0 100%;
+	}
+	/* 規格 */
+	#success-order-form tr td:nth-of-type(2) {
+		flex: 0 0 25%;
+	}
+	/* 甜度*/
+	#success-order-form tr td:nth-of-type(3) {
+		flex: 0 0 25%;
+	}
+	/* 數量 */
+	#success-order-form tr td:nth-of-type(4) {
+		flex: 0 0 25%;
+	}
+	/* 小計 */
+	#success-order-form tr td:nth-of-type(5) {
+		flex: 0 0 25%;
+	}
+	/* 到貨狀況 */
+	#success-order-form tr td:nth-of-type(6) {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
 }
 /* 原本要調整數量的數字
 	.min-width-60 {
 		width: 60px !important; /* 根據需要調整手機板上的最小寬度 */
 /* 手機版設定 */
 @media (max-width: 767px) {
-    .sticky-search {
-        top: 60px; /* 手機版的 navtop 設定 */
+	.sticky-search {
+		top: 60px; /* 手機版的 navtop 設定 */
+	}
+	.card-money-text {
+		font-size: 1.5rem;
+		text-align: end;
+		display: block;
+	}
+	.order-info, .recipient-info {
+        padding: 1rem;
     }
-    .card-money-text {
-        font-size: 1.5rem;
-        text-align: end;
+
+    .order-info .table, .recipient-info .table {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .order-info .table th, .recipient-info .table th {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .order-info .table td, .recipient-info .table td {
+        font-size: 1rem;
+        text-align: center;
         display: block;
+        width: 100%;
+    }
+
+    .order-info .table td span, .recipient-info .table td span {
+        display: block;
+        margin-top: 0.5rem;
+    }
+
+    .order-info .table td {
+        margin-bottom: 1rem;
+    }
+
+    .recipient-info .table td {
+        margin-bottom: 1rem;
     }
 }
 /* 平板版設定  適用於最小為768;最大為1023*/
 @media (min-width: 768px) and (max-width: 1023px) {
-    .sticky-search {
-        top: 142px; /* 平板版的 top 設定 */
-    }
+	.sticky-search {
+		top: 142px; /* 平板版的 top 設定 */
+	}
+		/* 商品資料 */
+		#success-order-form tr td:nth-of-type(1) {
+			flex: 0 0 40%;
+		}
+		/* 規格 */
+		#success-order-form tr td:nth-of-type(2) {
+			flex: 0 0 15%;
+			display: flex;
+			align-items: center;
+		}
+		/* 甜度*/
+		#success-order-form tr td:nth-of-type(3) {
+			flex: 0 0 15%;
+			display: flex;
+			align-items: center;
+		}
+		/* 數量 */
+		#success-order-form tr td:nth-of-type(4) {
+			flex: 0 0 12%;
+			display: flex;
+			align-items: center;
+		}
+		/* 小計 */
+		#success-order-form tr td:nth-of-type(5) {
+			flex: 0 0 10%;
+			display: flex;
+			align-items: center;
+		}
+		/* 到貨狀況 */
+		#success-order-form tr td:nth-of-type(6) {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
 }
 
 /* 電腦版設定 適用大於1024或=1024*/
 @media (min-width: 1024px) {
-    .sticky-search {
-        top: 135px; /* 電腦版的 top 設定與 navbar 保持一致  */
-    }
+	.sticky-search {
+		top: 135px; /* 電腦版的 top 設定與 navbar 保持一致  */
+	}
 }

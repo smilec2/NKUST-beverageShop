@@ -49,7 +49,7 @@
                                     title="前往商品詳細說明頁">
                                     <!-- 商品圖 -->
                                     <div class="col-xl-3 col-md-3 col-4 me-2">
-                                        <img src="images/drink1.jpg" alt="手熬薏仁湯圖" />
+                                        <img src="{{ asset('assets/images/drink1.jpg') }}" alt="手熬薏仁湯圖" />
                                     </div>
                                     <!-- 商品名稱 -->
                                     <h3 class="fs-6 text-darkred text-start lh-base">手熬薏仁湯</h3>
@@ -141,7 +141,7 @@
                                     title="前往商品詳細說明頁">
                                     <!-- 商品圖 -->
                                     <div class="col-xl-3 col-md-3 col-4 me-2">
-                                        <img src="images/drink1.jpg" alt="手熬薏仁湯圖" />
+                                        <img src="{{ asset('assets/images/drink1.jpg') }}" alt="手熬薏仁湯圖" />
                                     </div>
                                     <!-- 商品名稱 -->
                                     <h3 class="fs-6 text-darkred text-start lh-base">手熬薏仁湯</h3>
@@ -233,7 +233,7 @@
                                     title="前往商品詳細說明頁">
                                     <!-- 商品圖 -->
                                     <div class="col-xl-3 col-md-3 col-4 me-2">
-                                        <img src="images/drink1.jpg" alt="手熬薏仁湯圖" />
+                                        <img src="{{ asset('assets/images/drink1.jpg') }}" alt="手熬薏仁湯圖" />
                                     </div>
                                     <!-- 商品名稱 -->
                                     <h3 class="fs-6 text-darkred text-start lh-base">手熬薏仁湯</h3>
