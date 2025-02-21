@@ -22,7 +22,7 @@
 		</div>
 
 		<!-- 內容 -->
-		<form action="" method="POST">
+		<form action="/product/description/{{$product->id}}" method="POST">
 			@csrf
 			<div class="row flex-column flex-md-row">
 				<div class="col-md-7 order-2 order-xl-1">
@@ -39,6 +39,13 @@
 							<span class="text-lotus">{{$product->description}}
 						</div>
 					</div>
+					<!-- 埋入user_id，如果沒有就不能加入購物車 -->
+					@if (session()->has('user_id'))
+					<input type="hidden" name="user_id" value="{{ session('user_id') }}">
+					@else
+					<input type="hidden" name="user_id" value = 0>
+					@endif
+					<input type="hidden" name="product_id" value="{{ $product->id }}">
 					<!-- 容量、數量 -->
 					<div class="">
 						<div class="row row-cols-3 mx-0 g-xl-5 g-3">
@@ -60,6 +67,7 @@
 									class="form-select border-1 bg-transition text-darkred rounded my-4"
 									name="sweetness"
 									aria-label="select-list">
+									<option value="1">無</option>
 									<option value="2">微</option>
 									<option value="3">半</option>
 									<option value="4" selected>正常</option>
@@ -74,7 +82,6 @@
 									aria-label="select-list"
 									disabled>
 									<option value="1" selected>固定</option>
-
 								</select>
 							</div>
 							@endif
@@ -130,5 +137,52 @@
 		</form>
 	</div>
 </article>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+        // 取得表單與輸入欄位
+        const form = document.querySelector("form[action='/product/description/{{$product->id}}']");
+        const userID = form.querySelector("input[name='user_id']");
+        const productID = form.querySelector("input[name='product_id']");
+		const size = form.querySelector("select[name='size']");
+		const sweetness = form.querySelector("select[name='sweetness']");
+		const quantity = form.querySelector("select[name='quantity']");
+        
+		form.addEventListener("submit", function (event) {
+			event.preventDefault(); // 阻止表單預設提交行為
+			const formData = {
+				user_id: userID.value,
+				product_id: productID.value,
+				size: size.value,
+				sweetness: sweetness.value,
+				quantity: quantity.value
+			}
+			console.log(formData);
+
+			fetch("/product/description/{{$product->id}}", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+				},
+				body: JSON.stringify(formData)
+			})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert("商品已成功加入購物車！");
+				} else if (!data.success) {
+					alert(data.message);
+					console.log(data.message);
+				} else {
+					alert(data.message);
+				}
+			})
+			.catch(error => {
+				console.error("錯誤:", error);
+				alert("發生錯誤，請稍後再試！");
+			});
+		});
+	});
+</script>
 
 @endsection

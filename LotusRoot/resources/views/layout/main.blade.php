@@ -113,10 +113,9 @@
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {
 			const addToCartButtons = document.querySelectorAll(".add-to-cart");
-
 			addToCartButtons.forEach(button => {
 				button.addEventListener("click", function () {
-					// 取得選項
+					// 取得選項-從瀏覽頁加入的購物車
 					const productItem = this.closest(".product-info");
 					const userId = productItem.dataset.user_id;
 					const productId = productItem.dataset.product_id; 
@@ -124,9 +123,8 @@
 					const sugar = productItem.dataset.sugar; 
 					const size = productItem.dataset.size; 
 					const price = productItem.dataset.price;  
-
-					// 構建表單資料
-					const formData = {
+					// 構建表單資料-從瀏覽頁加入的購物車
+					const formDataDefault = {
 						product_id: productId,
 						user_id: userId,
 						quantity: quantity,
@@ -134,7 +132,8 @@
 						cup_size: size,
 						price: price
 					};
-					console.log(formData);
+
+					// console.log(formData);
 
 					// 發送請求到後端
 					fetch("/cart/add", {
@@ -143,7 +142,7 @@
 							"Content-Type": "application/json",
 							"X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content, // 確保發送 CSRF token
 						},
-						body: JSON.stringify(formData)
+						body: JSON.stringify(formDataDefault)
 					})
 					.then(response => response.json())
 					.then(data => {
@@ -171,10 +170,10 @@
 					// 	}
 					// })
 					// .catch(error => console.error('請求錯誤:', error));
+					});
 				});
 			});
-		});
-	</script>
+		</script>
 	</body>
 </html>
 

@@ -58,7 +58,6 @@
                 
                 >
             @endif
-            
                 <div class="card h-100 text-center">
                     <div class="position-relative overflow-hidden">
                         <a
