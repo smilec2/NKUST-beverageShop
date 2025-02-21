@@ -29,21 +29,29 @@
 	}
 	/* 規格 */
 	#cart-list-form tr td:nth-of-type(3) {
-		flex: 0 0 25%;
-	}
-	/* 數量 */
-	#cart-list-form tr td:nth-of-type(4) {
-		flex: 0 0 44%;
-	}
-	/* 小計 */
-	#cart-list-form tr td:nth-of-type(5) {
 		flex: 0 0 30%;
 	}
-	/* 變更 */
+	/* 甜度*/
+	#cart-list-form tr td:nth-of-type(4) {
+		flex: 0 0 32%;
+	}
+	/* 數量 */
+	#cart-list-form tr td:nth-of-type(5) {
+		flex: 0 0 38%;
+	}
+	/* 小計 */
 	#cart-list-form tr td:nth-of-type(6) {
+		flex: 0 0 100%;
+	}
+	/* 變更 */
+	#cart-list-form tr td:nth-of-type(7) {
 		position: absolute;
 		right: 0;
 		top: 0;
+	}
+	#cart-list-page td span::before {
+		content: "NT$";
+		padding-right: 0.1rem;
 	}
 }
 /* 原本要調整數量的數字
@@ -53,6 +61,11 @@
 @media (max-width: 767px) {
 	.sticky-search {
 		top: 60px; /* 手機版的 navtop 設定 */
+	}
+	.card-money-text {
+		font-size: 1.5rem;
+		text-align: end;
+		display: block;
 	}
 }
 /* 平板版設定  適用於最小為768;最大為1023*/
