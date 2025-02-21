@@ -73,7 +73,7 @@
 											id="btn-switch-register"
 											href="javascript:;"
 											data-bs-toggle="modal"
-											data-bs-target="#exampleModalRegister"
+											data-bs-target="#ModalRegister"
 											>我要註冊</a
 										>
 									</div>
