@@ -24,8 +24,8 @@
             class="filter-area row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-4 mx-0">
             @foreach($products as $product)
             <!-- 商品 -->
-            <!-- data-sugar = 0 固定甜度, category_id == 2 不能調整甜度-->
-            @if ($product->category_id == 2)
+            <!-- data-sugar = 0 固定甜度, has_sugar == 0 不能調整甜度-->
+            @if ($product->has_sugar == 0)
             <div
                 class="col text-center filtr-item py-3 product-info" 
                 @if (session()->has('user_id'))
@@ -35,12 +35,12 @@
                 @endif
                 data-product_id = "{{ $product->id }}"
                 data-quantity=1
-                data-sugar=0
+                data-sugar={{  $product->has_sugar }}
                 data-size=1
                 data-price="{{ $product->price }}"
                 data-category="{{ $product->category_id }}"
                 >
-                <!-- data-sugar = 0 固定甜度, category_id == 2 不能調整甜度-->
+                <!-- data-sugar = 0 固定甜度, has_sugar == 1 不能調整甜度-->
             @else 
                 <div
                 class="col text-center filtr-item py-3 product-info" 
@@ -51,7 +51,7 @@
                 @endif
                 data-product_id="{{ $product->id }}"
                 data-quantity=1
-                data-sugar=0
+                data-sugar={{  $product->has_sugar }}
                 data-size=1
                 data-price="{{ $product->price }}"
                 data-category="{{ $product->category_id }}"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -10,9 +11,36 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        return view("shoppingcarts");
+        $carts = Cart::where("user_id", $id)->get();
+        // dd($carts); 
+        // $products = [];
+        // foreach ($carts as $cart) {
+        //     $products[] = Product::find($cart->product_id)->get("product_name");
+        // }
+        $cartsInfos = [];
+        foreach ($carts as $cart) {
+            $productName = Product::find($cart->product_id)->product_name;
+            $productPic = Product::find($cart->product_id)->image_url;
+            $size = $cart->cup_size;
+            $sugar = $cart->sugar_level;
+            $quantity = $cart->quantity;
+            $price = $cart->price;
+            $cartsInfos[] = [
+                'productName' => $productName,
+                'productPic' => $productPic,
+                'size' => $size,
+                'sugar' => $sugar,
+                'quantity' => $quantity,
+                'price' => $price,
+            ];
+        }
+        // dd($cartsInfos);
+        $cartsInfos = collect($cartsInfos);
+        // dd($cartsInfos);
+        
+        return view("shoppingcarts", compact("cartsInfos"));
     }
 
     /**
@@ -65,7 +93,6 @@ class CartController extends Controller
 
     public function add(Request $request) 
     {
-
         $productData = $request->all();
         // dd($productData);
 
@@ -77,15 +104,15 @@ class CartController extends Controller
             ]);
         }
         //確認是否已經加入購物車
-        $cart = Cart::where('product_id', $productData['product_id'])
-            ->where('user_id', $productData['user_id'])
-            ->first();
-        if ($cart) {
-            return response()->json([
-                'success' => false,
-                'message' => '商品已經在購物車中'
-            ]);
-        }
+        // $cart = Cart::where('product_id', $productData['product_id'])
+        //     ->where('user_id', $productData['user_id'])
+        //     ->first();
+        // if ($cart) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => '商品已經在購物車中'
+        //     ]);
+        // }
 
         try {
             Cart::create($productData);

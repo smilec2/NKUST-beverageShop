@@ -149,9 +149,10 @@
                         </div>
                         @endif
                         <!-- 購物車 -->
+                        @if(session()->has('user_id'))
                         <div class="cart-btn">
                             <a
-                                href="/cart"
+                                href="/cart/{{  session()->get('user_id') }}"
                                 title="前往 我的購物車"
                                 class="position-relative">
                                 <i class="bi bi-cart text-darkred"></i>
@@ -159,6 +160,7 @@
                                     class="text-white small bg-danger rounded-pill p-1 fs-8 fw-bold position-absolute">+99</span>
                             </a>
                         </div>
+                        @endif
                     </div>
                 </li>
             </ul>

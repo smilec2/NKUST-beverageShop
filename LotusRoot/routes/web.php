@@ -38,7 +38,7 @@ Route::group(['prefix' => 'product'], function () {
 
 //購物車
 Route::group(['prefix' => 'cart'], function () {
-    Route::get('/', 'App\Http\Controllers\CartController@index');
+    Route::get('/{id}', 'App\Http\Controllers\CartController@index');
     Route::post('add', 'App\Http\Controllers\CartController@add');
     Route::put('update', 'App\Http\Controllers\CartController@update');
     Route::delete('delete', 'App\Http\Controllers\CartController@destroy');
