@@ -39,7 +39,6 @@
 							<span class="text-lotus">{{$product->description}}
 						</div>
 					</div>
-
 					<!-- 容量、數量 -->
 					<div class="">
 						<div class="row row-cols-3 mx-0 g-xl-5 g-3">
@@ -54,18 +53,31 @@
 									<option value="3">中</option>
 								</select>
 							</div>
+							@if ($product->has_sugar === 1)
 							<div class="col">
 								<label class="me-3 text-darkred">甜度</label>
 								<select
 									class="form-select border-1 bg-transition text-darkred rounded my-4"
 									name="sweetness"
 									aria-label="select-list">
-									<option value="1" selected>固定</option>
 									<option value="2">微</option>
 									<option value="3">半</option>
-									<option value="4">正常</option>
+									<option value="4" selected>正常</option>
 								</select>
 							</div>
+							@else
+							<div class="col">
+								<label class="me-3 text-darkred">甜度</label>
+								<select
+									class="form-select border-1 bg-transition text-darkred rounded my-4"
+									name="sweetness"
+									aria-label="select-list"
+									disabled>
+									<option value="1" selected>固定</option>
+
+								</select>
+							</div>
+							@endif
 							<div class="col">
 								<label class="me-2 text-darkred">數量</label>
 								<div class="d-flex align-items-center">
@@ -87,7 +99,6 @@
 							</div>
 						</div>
 					</div>
-
 					<!-- 按鈕 -->
 					<!-- 加入購物車 -->
 					<div
