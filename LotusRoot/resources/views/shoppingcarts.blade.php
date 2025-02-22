@@ -108,12 +108,11 @@
                                     <button class="btn border-0" type="button" title="加入收藏商品">
                                         <i class="bi bi-heart"></i>
                                         <span class="d-none">收藏</span>
-                                        <!-- 刪除商品 -->
-                                        <button class="btn border-0" type="button" title="刪除商品">
+                                        <!-- 刪除商品 -->    
+                                        <button class="btn border-0 remove-cart" data-id="{{ $item['cartId'] }}" title="移除購物車">
                                             <i class="bi bi-trash"></i>
                                             <span class="d-none">刪除</span>
                                         </button>
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -135,7 +134,6 @@
                     <div>
                         <span class="text-darkred">已選 <span id="selected-count">0</span> 項商品
                         </span>
-
                         <span class="text-darkred me-3">，結帳金額</span>
                         <span class="text-darkred fs-4 card-money-text">165</span>
                     </div>
@@ -148,4 +146,37 @@
         </div>
     </div>
 </article>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".remove-cart").forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                let cartId = this.getAttribute("data-id");
+
+                if (!confirm("確定要將此商品移除購物車嗎？")) {
+                    return; // Stop if the user cancels
+                }
+
+                fetch(`/cart/${cartId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("商品已移除購物車");
+                        location.reload(); // Reload page to update cart
+                    } else {
+                        alert("移除失敗，請重試");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    });
+</script>
 @endsection

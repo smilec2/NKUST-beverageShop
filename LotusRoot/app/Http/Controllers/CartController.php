@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+// TODO:建立刪除購物車功能
+// TODO:建立更新購物車功能(例如改變規格或數量)
+// TODO:建立購物車結帳功能
+// TODO:建立購物車清空功能
+// TODO:按下購物後生成訂單
+// TODO:訂單生成後清空購物車
+// TODO:計算總金額前端顯示
 
 class CartController extends Controller
 {
@@ -13,6 +20,7 @@ class CartController extends Controller
      */
     public function index($id)
     {
+        // dd($id);
         $carts = Cart::where("user_id", $id)->get();
         // dd($carts); 
         // $products = [];
@@ -28,6 +36,7 @@ class CartController extends Controller
             $quantity = $cart->quantity;
             $price = $cart->price;
             $cartsInfos[] = [
+                'cartId' => $cart->id,
                 'productName' => $productName,
                 'productPic' => $productPic,
                 'size' => $size,
@@ -52,30 +61,6 @@ class CartController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $carts)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $carts)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Cart $carts)
@@ -86,9 +71,17 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cart $carts)
+    public function destroy($id)
     {
-        //
+        $cartItem = Cart::find($id);
+        // dd($cartItem);
+
+        if ($cartItem) {
+            $cartItem->delete();
+            return response()->json(['success' => true, 'message' => '商品已移除']);
+        }
+    
+        return response()->json(['success' => false, 'message' => '找不到該商品']);
     }
 
     public function add(Request $request) 
