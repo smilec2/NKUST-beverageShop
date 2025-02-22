@@ -10,9 +10,13 @@ Route::get('/menu', function () {
 });
 
 //會員管理
+
 Route::group(['prefix' => 'user'], function () {
     Route::group(['prefix' => 'auth'], function () {
-        Route::get('test', 'App\Http\Controllers\UserAuthController@Signtest')->middleware(AuthUserAdminMiddleware::class);
+        // 查詢購買紀錄頁面
+        Route::get('testget', 'App\Http\Controllers\UserAuthController@testget')->middleware(AuthUserAdminMiddleware::class)->name('user.auth.testget');
+        // 查詢購買紀錄邏輯
+        Route::post('testpost', 'App\Http\Controllers\UserAuthController@testpost')->name('user.auth.testpost');
         // 註冊邏輯
         Route::post('signup', 'App\Http\Controllers\UserAuthController@SignUpProcess');
         // 登入邏輯
@@ -20,9 +24,9 @@ Route::group(['prefix' => 'user'], function () {
         // 清除 session 中的 user_id
         Route::get('signout', 'App\Http\Controllers\UserAuthController@SignOut')->name('signout');
         // 變更會員資料頁面
-        Route::get('editProfileGet', 'App\Http\Controllers\UserAuthController@editProfileGet')->name('editProfileGet');
+        Route::get('editProfileGet', 'App\Http\Controllers\UserAuthController@editProfileGet')->middleware(AuthUserAdminMiddleware::class)->name('editProfileGet');
         // 變更會員資料邏輯
-        Route::post('editProfilePost', 'App\Http\Controllers\UserAuthController@editProfilePost')->name('editProfilePost');  
+        Route::post('editProfilePost', 'App\Http\Controllers\UserAuthController@editProfilePost')->name('editProfilePost'); 
     });
 });
 //google登入

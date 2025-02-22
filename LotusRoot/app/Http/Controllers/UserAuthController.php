@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth; 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Hash;
-use App\Models\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Socialite;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\Order;
+use Carbon\Carbon;
+use Hash;
 
 
 class UserAuthController extends Controller
@@ -153,10 +156,6 @@ class UserAuthController extends Controller
         session()->forget('user_id');  
         return redirect('/');  // 登出後重定向回登入頁面
     }
-    // 測試管理員導入
-    public function Signtest() {
-        return view('layout.main'); 
-    }
     // 會員變更頁面
     public function editProfileGet()
     {
@@ -222,5 +221,50 @@ class UserAuthController extends Controller
 
         return response()->json(['success' => '更新成功！']);
     }
- 
+    // 查詢購買紀錄頁面
+    public function testget()
+    {
+        $users = User::all(); // 獲取所有用戶資料
+        $orders = session('orders', collect());
+        
+        return view('layout.Query', compact('users', 'orders')); // 傳遞用戶和訂單資料到視圖
+    }
+    // 查詢購買紀錄邏輯
+    public function testpost(Request $request)
+    {
+        // 獲取查詢參數
+        $userId = $request->input('username');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // 驗證日期參數
+        $validator = Validator::make($request->all(), [
+        'start_date' => 'required|date',
+        'end_date'   => 'required|date|after_or_equal:start_date',
+        ], [
+            'start_date.required' => '開始日期是必填的',
+            'start_date.date' => '開始日期格式不正確',
+            'end_date.required' => '結束日期是必填的',
+            'end_date.date' => '結束日期格式不正確',
+            'end_date.after_or_equal' => '結束日期必須大於或等於開始日期',
+        ]); 
+
+        // 如果驗證失敗，返回錯誤訊息
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // 查詢該用戶的訂單
+        $orders = Order::where('user_id', $userId)
+            ->whereBetween('created_at', [
+                Carbon::parse($startDate)->startOfDay(),
+                Carbon::parse($endDate)->endOfDay()
+            ])
+            ->get();
+        session()->flash('orders', $orders);
+        // 傳遞資料到前端
+        $users = User::all();
+        return redirect()->route('user.auth.testget');
+    }
+    
 }

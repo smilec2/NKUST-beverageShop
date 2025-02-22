@@ -138,7 +138,7 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="adminDropdown">
                                         <li><a class="dropdown-item" href="http://localhost:8080/user/auth/editProfileGet">修改會員資料</a></li>
-                                        <li><a class="dropdown-item" href="#">選項 2</a></li>
+                                        <li><a class="dropdown-item" href="http://localhost:8080/user/auth/testget">查詢</a></li>
                                         <li><a class="dropdown-item" href="#">選項 3</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item text-danger" href="{{ route('signout') }}">登出</a></li>
