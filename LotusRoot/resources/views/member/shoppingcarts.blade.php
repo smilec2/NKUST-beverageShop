@@ -108,7 +108,8 @@
                                     <button class="btn border-0" type="button" title="加入收藏商品">
                                         <i class="bi bi-heart"></i>
                                         <span class="d-none">收藏</span>
-                                        <!-- 刪除商品 -->    
+                                        <!-- 刪除商品 -->
+    
                                         <button class="btn border-0 remove-cart" data-id="{{ $item['cartId'] }}" title="移除購物車">
                                             <i class="bi bi-trash"></i>
                                             <span class="d-none">刪除</span>
@@ -158,7 +159,7 @@
                     return; // Stop if the user cancels
                 }
 
-                fetch(`/cart/${cartId}`, {
+                fetch(`{{ route('cart.destroy', ':cartId') }}`.replace(':cartId', cartId), {
                     method: "DELETE",
                     headers: {
                         "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),

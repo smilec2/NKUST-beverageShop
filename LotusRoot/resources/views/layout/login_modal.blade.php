@@ -20,7 +20,7 @@
             <div class="text-center justify-content-center">
                 <div class="modal-body h3 py-4 text-darkred">會員登入</div>
                 <div class="modal-body">
-                    <form action="/user/auth/signin" method="post" class="px-3">
+                    <form id = "signIn-form" method="post" class="px-3">
                         @csrf
                         <div class="mb-3">
                             <input
@@ -106,7 +106,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // 取得表單與輸入欄位
-        const form = document.querySelector("form[action='/user/auth/signin']");
+        const form = document.querySelector("#signIn-form");
         const emailInput = form.querySelector("input[name='email']");
         const passwordInput = form.querySelector("input[name='password']");
         const rememberMeInput = form.querySelector("input#rememberMe");
@@ -125,7 +125,8 @@
             };
 
             // 發送 AJAX 請求
-            fetch("/user/auth/signin", {
+            const signInUrl = "{{ route('user.signin') }}";
+            fetch(signInUrl, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -13,7 +13,7 @@
 				
                     {{ csrf_field() }}
                     @if (session()->has('user_id'))
-					<form id="editProfileForm" action="{{ route('editProfilePost') }}" method="post" enctype="multipart/form-data" class="p-3">
+					<form id="editProfileForm" enctype="multipart/form-data" class="p-3">
 						@csrf
                             <div class="mb-3">
                                 <div class="text-danger small" id="error-name"></div>
@@ -81,7 +81,7 @@
                 return; // 若有錯誤，停止執行
             }
 
-            fetch("{{ route('editProfilePost') }}", {
+            fetch("{{ route('user.editProfile.post') }}", {
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
