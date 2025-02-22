@@ -89,7 +89,7 @@
                             </li>
                             <li class="col text-center">
                                 <a
-                                    href="product/description/{{ $product->id }}"
+                                    href="{{ route('product.description', $product->id,) }}"
                                     title="點擊前往商品說明頁"
                                     class="text-green fs-5 pt-1">
                                     <i class="bi bi-info-circle-fill"></i>
