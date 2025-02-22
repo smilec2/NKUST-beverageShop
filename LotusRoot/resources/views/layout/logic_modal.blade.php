@@ -12,7 +12,7 @@
             <div class="text-center justify-content-center">
                 <div class="modal-body h3 py-4 text-darkred">會員註冊</div>
                 <div class="modal-body">
-                    <form id="registerForm" action="/user/auth/signup" method="POST" class="px-3">
+                    <form id="registerForm" class="px-3">
                         @csrf
                         <div class="mb-3">
                             <input class="form-control" type="text" id="name" name="name" placeholder="請輸入使用者名稱" required />
@@ -79,7 +79,9 @@
             };
             //用fetch API 送出資料
             //模擬表單送出資料 post方法，按鈕也可以用這個方法
-            fetch("/user/auth/signup", {
+            const signUpURL = "{{route('user.signup')}}"
+
+            fetch(signUpURL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

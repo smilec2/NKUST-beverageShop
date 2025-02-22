@@ -451,7 +451,7 @@
 			<!-- 連結 -->
 			<div class="mt-3 text-center">
 				<a
-					href="onlineshop.html"
+					href="/product"
 					class="tn btn-lotus text-darkred rounded-pill px-3"
 					title="前往最新商品列">
 					<span class="fw-bold">更多</span>

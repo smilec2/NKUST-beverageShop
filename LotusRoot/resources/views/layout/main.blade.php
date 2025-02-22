@@ -91,9 +91,6 @@
 					document.getElementById("product_image_preview").src = productImageurl;
 					document.getElementById("edit_category").value = productCategoryId;
 					document.getElementById("edit_has_sugar").value = productHasSugar;
-
-					//設定表單 action
-					document.getElementById("edit_product_form").action = `/manage/product/edit/${productId}`;
 				})
 			})
 		</script>
@@ -136,7 +133,7 @@
 					// console.log(formData);
 
 					// 發送請求到後端
-					fetch("/cart/add", {
+					fetch("{{route('cart.add')}}", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
