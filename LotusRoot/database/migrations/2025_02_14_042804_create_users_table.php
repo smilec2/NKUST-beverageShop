@@ -19,7 +19,9 @@ return new class extends Migration
             //會員信箱
             $table->string('email')->unique();
             //會員密碼
-            $table->string('password');
+            $table->string('password')->nullable();
+            // Google ID（第三方登入專用）
+            $table->string('google_id')->nullable()->unique();
             //會員電話
             $table->string('phone_number')->nullable();
             // 帳號類型（type）:用於識別登入會員身份
