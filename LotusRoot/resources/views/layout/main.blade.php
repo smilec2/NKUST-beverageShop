@@ -200,7 +200,7 @@
 							$('a[href="' + menuUrl + ' "]').addClass('active'); 
 						} else {
 							// 移除active類
-							$('a[href="' + menuUrl + ' "]').removeClass('active'); 
+							$('a[href="' + menuUrl + '"]').removeClass('active'); 
 						}
 					});
 				});
