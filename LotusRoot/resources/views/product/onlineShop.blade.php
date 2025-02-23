@@ -36,7 +36,7 @@
                 data-product_id = "{{ $product->id }}"
                 data-quantity=1
                 data-sugar={{  $product->has_sugar }}
-                data-size=1
+                data-size=3
                 data-price="{{ $product->price }}"
                 data-category="{{ $product->category_id }}"
                 >
@@ -52,7 +52,7 @@
                 data-product_id="{{ $product->id }}"
                 data-quantity=1
                 data-sugar={{  $product->has_sugar }}
-                data-size=1
+                data-size=3
                 data-price="{{ $product->price }}"
                 data-category="{{ $product->category_id }}"
                 

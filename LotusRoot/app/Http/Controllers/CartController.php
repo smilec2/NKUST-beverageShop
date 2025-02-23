@@ -89,6 +89,21 @@ class CartController extends Controller
         $productData = $request->all();
         // dd($productData);
 
+        //依照大小杯確認價格
+        $product = Product::find($productData['product_id']);
+        if ($productData['cup_size'] == 3) {
+            $productData['price'] = $product->price;
+        } else if ($productData['cup_size'] == 2) {
+            $productData['price'] = $product->price + 10;
+        } else {
+            $productData['price'] = $product->price + 30;
+        }
+
+        //依照數量計算總價
+        $productData['price'] = $productData['price'] * $productData['quantity'];
+
+
+        // dd($productData);
         //確認是否登入
         if ($productData['user_id'] == 0) {
             return response()->json([
@@ -96,16 +111,7 @@ class CartController extends Controller
                 'message' => '請先登入'
             ]);
         }
-        //確認是否已經加入購物車
-        // $cart = Cart::where('product_id', $productData['product_id'])
-        //     ->where('user_id', $productData['user_id'])
-        //     ->first();
-        // if ($cart) {
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => '商品已經在購物車中'
-        //     ]);
-        // }
+        dd($productData);
 
         try {
             Cart::create($productData);

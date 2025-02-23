@@ -53,7 +53,7 @@
 								<label class="me-3 text-darkred">容量</label>
 								<select
 									class="form-select border-1 bg-transition text-darkred rounded my-4"
-									name="size"
+									name="cup_size"
 									aria-label="select-list">
 									<option value="1">瓶</option>
 									<option value="2" selected>大</option>
@@ -144,7 +144,7 @@
         const userID = form.querySelector("input[name='user_id']");
         const productID = form.querySelector("input[name='product_id']");
 		const price = form.querySelector(".price-tag").textContent.trim();;
-		const size = form.querySelector("select[name='size']");
+		const size = form.querySelector("select[name='cup_size']");
 		const sweetness = form.querySelector("select[name='sweetness']");
 		const quantity = form.querySelector("select[name='quantity']");
         
@@ -153,7 +153,7 @@
 			const formData = {
 				user_id: userID.value,
 				product_id: productID.value,
-				size: size.value,
+				cup_size: size.value,
 				sweetness: sweetness.value,
 				quantity: quantity.value,
 				price: price,
