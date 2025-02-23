@@ -16,7 +16,6 @@ Route::view('/menu', 'menu')->name('menu');
 //會員管理
 Route::prefix('user')->group(function () {
     Route::prefix('auth')->group(function () {
-        Route::get('test', [UserAuthController::class, 'Signtest'])->middleware(AuthUserAdminMiddleware::class);
         Route::post('signup', [UserAuthController::class, 'SignUpProcess'])->name('user.signup');
         Route::post('signin', [UserAuthController::class, 'SigninProcess'])->name('user.signin');
         Route::get('signout', [UserAuthController::class, 'SignOut'])->name('user.signout');
@@ -50,7 +49,7 @@ Route::prefix('cart')->group(function () {
 //管理者-商品
 Route::prefix('manage')->group(function () {
     Route::prefix('product')->group(function () {
-        Route::get('/create', [ProductController::class, 'create'])->name('admin.product.create');
+        Route::get('/create', [ProductController::class, 'create'])->name('admin.product.create')->middleware(AuthUserAdminMiddleware::class);;
         Route::post('/create', [ProductController::class, 'store'])->name('admin.product.store');
         Route::put('/edit/{id}', [ProductController::class, 'update'])->name('admin.product.update');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');

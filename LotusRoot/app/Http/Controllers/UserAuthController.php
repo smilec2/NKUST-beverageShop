@@ -122,7 +122,7 @@ class UserAuthController extends Controller
         ]);
 
         // 判斷使用者類型，管理者 (A) 跳轉 /user/auth/test，會員 (G) 跳轉 /
-        $redirect_url = ($tmpuser->type === 'A') ? route('user.editProfile.get') : route('home');
+        $redirect_url = ($tmpuser->type === 'A') ? route('admin.product.create') : route('home');
 
         // 回傳登入成功及對應的跳轉網址
         return response()->json([
