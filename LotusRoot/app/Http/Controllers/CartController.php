@@ -49,7 +49,7 @@ class CartController extends Controller
         $cartsInfos = collect($cartsInfos);
         // dd($cartsInfos);
         
-        return view("shoppingcarts", compact("cartsInfos"));
+        return view("member.shoppingcarts", compact("cartsInfos"));
     }
 
     /**

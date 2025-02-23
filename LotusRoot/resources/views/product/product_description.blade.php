@@ -22,7 +22,7 @@
 		</div>
 
 		<!-- 內容 -->
-		<form action="/product/description/{{$product->id}}" method="POST">
+		<form id="product_description_form">
 			@csrf
 			<div class="row flex-column flex-md-row">
 				<div class="col-md-7 order-2 order-xl-1">
@@ -30,7 +30,7 @@
 					<div class="text-start section-title mx-4 my-4">
 						<h2>{{$product->product_name}}</h2>
 						<div class="text-start">
-							<span class="text-green fs-4 product-description-money-text">
+							<span class="text-green fs-4 product-description-money-text price-tag">
 								{{$product->price}}
 							</span>
 						</div>
@@ -140,9 +140,10 @@
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
         // 取得表單與輸入欄位
-        const form = document.querySelector("form[action='/product/description/{{$product->id}}']");
+        const form = document.querySelector("#product_description_form");
         const userID = form.querySelector("input[name='user_id']");
         const productID = form.querySelector("input[name='product_id']");
+		const price = form.querySelector(".price-tag").textContent.trim();;
 		const size = form.querySelector("select[name='size']");
 		const sweetness = form.querySelector("select[name='sweetness']");
 		const quantity = form.querySelector("select[name='quantity']");
@@ -154,11 +155,12 @@
 				product_id: productID.value,
 				size: size.value,
 				sweetness: sweetness.value,
-				quantity: quantity.value
+				quantity: quantity.value,
+				price: price,
 			}
 			console.log(formData);
 
-			fetch("/product/description/{{$product->id}}", {
+			fetch("{{ route('cart.add') }}",{
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
