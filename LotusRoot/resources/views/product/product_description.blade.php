@@ -154,7 +154,7 @@
 				user_id: userID.value,
 				product_id: productID.value,
 				cup_size: size.value,
-				sweetness: sweetness.value,
+				sugar_level: sweetness.value,
 				quantity: quantity.value,
 				price: price,
 			}
