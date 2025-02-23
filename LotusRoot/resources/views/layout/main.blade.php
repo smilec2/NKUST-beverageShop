@@ -171,6 +171,41 @@
 				});
 			});
 		</script>
+		<!-- Navbar 顏色變化 -->
+		<script>
+			var menuUrl = "{{ route('menu') }}";  // 把路由 URL 存儲到變數中
+			console.log(menuUrl);
+		</script>
+		<script>
+			$(document).ready(function() {
+				// 偵測滾動
+				$(window).scroll(function() {
+					var scrollPosition = $(document).scrollTop(); // 當前頁面的滾動位置
+					var navbarHeight = $(".navbar").outerHeight(); // 獲取navbar的高度（可根據實際情況調整）
+
+					// 遍歷每個section，根據滾動位置改變navbar顏色
+					$("article").each(function() {
+						var sectionOffset = $(this).offset().top; // 取得每個section的頂部位置
+						var sectionHeight = $(this).outerHeight(); // 取得每個section的高度
+						var sectionId = $(this).attr("id"); // 取得section的id，對應navbar的錨點
+
+						if (scrollPosition + navbarHeight >= sectionOffset && scrollPosition + navbarHeight < sectionOffset + sectionHeight) { // 滾動位置進入該區域
+							$('a[href="/#' + sectionId + '"]').addClass('active'); // 給navbar項目加上active類
+						} else {
+							$('a[href="/#' + sectionId + '"]').removeClass('active'); // 移除active類
+						}
+						// 檢查滾動位置是否進入該區域
+						if (scrollPosition + navbarHeight >= sectionOffset && scrollPosition + navbarHeight < sectionOffset + sectionHeight) {
+                		// 給對應的navbar項目加上active類
+							$('a[href="' + menuUrl + ' "]').addClass('active'); 
+						} else {
+							// 移除active類
+							$('a[href="' + menuUrl + ' "]').removeClass('active'); 
+						}
+					});
+				});
+			});
+		</script>
 	</body>
 </html>
 

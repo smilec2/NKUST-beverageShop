@@ -78,6 +78,10 @@ iframe {
 .bgc-pearl-aa {
 	background-color: rgba(211, 202, 187, 0.5);
 }
+
+.navbar-nav .nav-link.active {
+	color: rgba(120, 100, 160, 1);
+}
 /* -------------- */
 /* 自訂(使用在關於) */
 .py-7 {
@@ -305,6 +309,7 @@ a.nav-link:hover {
 	text-align: center;
 	text-align-last: center;
 }
+
 
 /* 產品說明的-+按鈕 */
 .plus-btn,

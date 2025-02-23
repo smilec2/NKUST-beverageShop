@@ -108,17 +108,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/menu" title="前往 菜單MENU">菜單MENU</a>
+                    <a class="nav-link" href="{{route('menu')}}" title="前往 菜單MENU">菜單MENU</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product" title="前往 線上購物">線上購物
+                    <a class="nav-link" href="{{route('product.index')}}" title="前往 線上購物">線上購物
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/#contact-us" title="前往 聯絡我們">聯絡我們</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#subscribe" title="前往 訂閱">訂閱</a>
+                    <a class="nav-link" href="/#subscribe" title="前往 訂閱">訂閱</a>
                 </li>
                 <!-- 電腦版 -->
                 <li class="nav-item d-lg-block d-none">
