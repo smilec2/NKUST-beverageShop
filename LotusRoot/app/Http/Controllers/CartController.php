@@ -126,7 +126,6 @@ class CartController extends Controller
             $cartItem->delete();
             return response()->json(['success' => true, 'message' => '商品已移除']);
         }
-
         return response()->json(['success' => false, 'message' => '找不到該商品']);
     }
 
@@ -157,7 +156,6 @@ class CartController extends Controller
             ]);
         }
         // dd($productData);
-
         try {
             Cart::create($productData);
             return response()->json([

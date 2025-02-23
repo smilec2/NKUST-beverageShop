@@ -200,7 +200,7 @@
                                 class="position-relative">
                                 <i class="bi bi-cart text-darkred"></i>
                                 <span
-                                    class="text-white small bg-danger rounded-pill p-1 fs-8 fw-bold position-absolute">+99</span>
+                                    class="text-white small bg-danger rounded-pill p-1 fs-8 fw-bold position-absolute">{{ $cart_count }}</span>
                             </a>
                         </ㄠ>
                         @endif
