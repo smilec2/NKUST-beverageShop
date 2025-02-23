@@ -1,3 +1,7 @@
+html {
+	scroll-padding-top: 134px; /* 設置與 navbar 高度相同的空間 */
+}
+
 body {
 	font-family: "獅尾牙膏圓體", sans-serif;
 	overflow-x: hidden;
