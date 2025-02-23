@@ -31,6 +31,9 @@ DB_PASSWORD=password
 6. 產生專案用的 APP_KEY，終端機輸入
 ```php artisan key:generate```
 
+7. 讓public可以取得storage檔案夾內容
+```php artisan storage:link```
+
 ## 注意伺服器的位置
 * 使用XAMPP時，需要注意Apache設定localhost位址，需要設定成本專案public檔案夾位置
 * 或者修改APP_url到Apache指定的位址

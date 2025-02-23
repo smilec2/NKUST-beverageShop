@@ -67,7 +67,7 @@
 								</td>
 								<td>
 									<button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editProductModal">編輯</button>
-									<form action="{{ $product->id }}" method="post" >
+									<form action="{{ route('admin.product.destroy', $product->id) }}" method="post" >
 										@csrf
 										@method('DELETE')
 										<button type="submit" class="btn btn-danger btn-sm" onclick=' return confirm("確定要刪除資料嗎")'>刪除</button>
@@ -110,7 +110,7 @@
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form method="post" enctype="multipart/form-data" id="edit_product_form">
+				<form action="{{route('admin.product.update', $product->id)}}" method="post" enctype="multipart/form-data" id="edit_product_form">
 					@csrf
 					<!-- 使用put方法 -->
 					@method('PUT')

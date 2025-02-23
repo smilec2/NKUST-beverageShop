@@ -16,7 +16,7 @@
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="" method="post" enctype="multipart/form-data">
+				<form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="mb-3">
 						<label for="product_name" class="form-label">商品名稱</label>

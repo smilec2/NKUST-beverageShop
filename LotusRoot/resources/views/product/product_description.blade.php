@@ -81,7 +81,7 @@
 									name="sweetness"
 									aria-label="select-list"
 									disabled>
-									<option value="1" selected>固定</option>
+									<option value="0" selected>固定</option>
 								</select>
 							</div>
 							@endif

@@ -3,46 +3,59 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+// TODO:建立刪除購物車功能
+// TODO:建立更新購物車功能(例如改變規格或數量)
+// TODO:建立購物車結帳功能
+// TODO:建立購物車清空功能
+// TODO:按下購物後生成訂單
+// TODO:訂單生成後清空購物車
+// TODO:計算總金額前端顯示
 
 class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        return view("shoppingcarts");
+        // dd($id);
+        $carts = Cart::where("user_id", $id)->get();
+        // dd($carts); 
+        // $products = [];
+        // foreach ($carts as $cart) {
+        //     $products[] = Product::find($cart->product_id)->get("product_name");
+        // }
+        $cartsInfos = [];
+        foreach ($carts as $cart) {
+            $productName = Product::find($cart->product_id)->product_name;
+            $productPic = Product::find($cart->product_id)->image_url;
+            $size = $cart->cup_size;
+            $sugar = $cart->sugar_level;
+            $quantity = $cart->quantity;
+            $price = $cart->price;
+            $cartsInfos[] = [
+                'cartId' => $cart->id,
+                'productName' => $productName,
+                'productPic' => $productPic,
+                'size' => $size,
+                'sugar' => $sugar,
+                'quantity' => $quantity,
+                'price' => $price,
+            ];
+        }
+        // dd($cartsInfos);
+        $cartsInfos = collect($cartsInfos);
+        // dd($cartsInfos);
+        
+        return view("shoppingcarts", compact("cartsInfos"));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $carts)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $carts)
     {
         //
     }
@@ -58,14 +71,21 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cart $carts)
+    public function destroy($id)
     {
-        //
+        $cartItem = Cart::find($id);
+        // dd($cartItem);
+
+        if ($cartItem) {
+            $cartItem->delete();
+            return response()->json(['success' => true, 'message' => '商品已移除']);
+        }
+    
+        return response()->json(['success' => false, 'message' => '找不到該商品']);
     }
 
     public function add(Request $request) 
     {
-
         $productData = $request->all();
         // dd($productData);
 
@@ -77,15 +97,15 @@ class CartController extends Controller
             ]);
         }
         //確認是否已經加入購物車
-        $cart = Cart::where('product_id', $productData['product_id'])
-            ->where('user_id', $productData['user_id'])
-            ->first();
-        if ($cart) {
-            return response()->json([
-                'success' => false,
-                'message' => '商品已經在購物車中'
-            ]);
-        }
+        // $cart = Cart::where('product_id', $productData['product_id'])
+        //     ->where('user_id', $productData['user_id'])
+        //     ->first();
+        // if ($cart) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => '商品已經在購物車中'
+        //     ]);
+        // }
 
         try {
             Cart::create($productData);
