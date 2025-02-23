@@ -140,7 +140,7 @@
                         <span class="text-darkred">已選 <span id="selected-count">0</span> 項商品
                         </span>
                         <span class="text-darkred me-3">，結帳金額</span>
-                        <span class="text-darkred fs-4 card-money-text">165</span>
+                        <span class="text-darkred fs-4 card-money-text">{{ $totalPrice }}</span>
                     </div>
                 </div>
                 <!-- 結帳btn -->

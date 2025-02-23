@@ -5,8 +5,6 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-// TODO:建立刪除購物車功能
-// TODO:建立更新購物車功能(例如改變規格或數量)
 // TODO:建立購物車結帳功能
 // TODO:建立購物車清空功能
 // TODO:按下購物後生成訂單
@@ -27,6 +25,8 @@ class CartController extends Controller
         // foreach ($carts as $cart) {
         //     $products[] = Product::find($cart->product_id)->get("product_name");
         // }
+    $totalPrice = Cart::where("user_id", $id)->sum("price");
+    // dd($totalPrice);
         $cartsInfos = [];
         foreach ($carts as $cart) {
             $productName  = Product::find($cart->product_id)->product_name;
@@ -49,7 +49,7 @@ class CartController extends Controller
         $cartsInfos = collect($cartsInfos);
         // dd($cartsInfos);
 
-        return view("member.shoppingcarts", compact("cartsInfos"));
+        return view("member.shoppingcarts", compact("cartsInfos", "totalPrice"));
     }
 
     /**
