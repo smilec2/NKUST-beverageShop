@@ -60,8 +60,8 @@
                             <!-- 規格 -->
                             <td class="align-middle">
                                 <select
-                                    class="form-select text-center border-1 bg-transition text-darkred rounded"
-                                    aria-label="select-list">
+                                    class="form-select text-center border-1 bg-transition text-darkred rounded size-selector"
+                                    aria-label="select-list" data-id="{{ $item['cartId'] }}">
                                     <!-- <option selected>請選擇</option> -->
                                 <option value="1" @if($item['size'] == 1) selected @endif>瓶</option>
                                 <option value="2" @if($item['size'] == 2) selected @endif>大</option>
@@ -70,14 +70,18 @@
                             </td>
                             <!-- 甜度 -->
                             <td class="align-middle">
-                                <select class="form-select text-center border-1 bg-transition text-darkred rounded"
+                                <select class="form-select text-center border-1 bg-transition text-darkred rounded sugar-selector"
                                         aria-label="select-list"
-                                        @if ($item['sugar'] == 0) disabled @endif>
+                                        @if ($item['sugar'] == 0) disabled @endif
+                                        data-id="{{ $item['cartId'] }}">
                                     <!-- <option selected>請選擇</option> -->
-                                    <option value="0" @if($item['sugar'] == 0) selected @endif>固定</option>
+                                    @if ($item['sugar'] == 0)<option value="0" @if($item['sugar'] == 0) selected @endif>固定</option>
+                                    @else
+                                    <option value="4" @if($item['sugar'] == 1) selected @endif>無糖</option>
                                     <option value="1" @if($item['sugar'] == 1) selected @endif>微</option>
                                     <option value="2" @if($item['sugar'] == 2) selected @endif>半</option>
                                     <option value="3" @if($item['sugar'] == 3) selected @endif>正常</option>
+                                    @endif
                                 </select>
                             </td>
                             <!-- 數量 -->
@@ -86,8 +90,8 @@
                                     <button class="btn p-1 dash-btn" type="button">
                                         <i class="bi bi-dash-lg"></i>
                                     </button>
-                                    <select class="form-select text-center border-1 bg-transition text-darkred rounded"
-                                            aria-label="Default select example">
+                                    <select class="form-select text-center border-1 bg-transition text-darkred rounded quantity-selector"
+                                            aria-label="Default select example" data-id="{{ $item['cartId'] }}">
                                         <option value="1" @if($item['quantity'] == 1) selected @endif>1</option>
                                         <option value="2" @if($item['quantity'] == 2) selected @endif>2</option>
                                         <option value="3" @if($item['quantity'] == 3) selected @endif>3</option>
@@ -109,7 +113,7 @@
                                         <i class="bi bi-heart"></i>
                                         <span class="d-none">收藏</span>
                                         <!-- 刪除商品 -->
-    
+
                                         <button class="btn border-0 remove-cart" data-id="{{ $item['cartId'] }}" title="移除購物車">
                                             <i class="bi bi-trash"></i>
                                             <span class="d-none">刪除</span>
@@ -136,7 +140,7 @@
                         <span class="text-darkred">已選 <span id="selected-count">0</span> 項商品
                         </span>
                         <span class="text-darkred me-3">，結帳金額</span>
-                        <span class="text-darkred fs-4 card-money-text">165</span>
+                        <span class="text-darkred fs-4 card-money-text">{{ $totalPrice }}</span>
                     </div>
                 </div>
                 <!-- 結帳btn -->
@@ -152,7 +156,7 @@
         document.querySelectorAll(".remove-cart").forEach(button => {
             button.addEventListener("click", function (event) {
                 event.preventDefault(); // Prevent default form submission
-                
+
                 let cartId = this.getAttribute("data-id");
 
                 if (!confirm("確定要將此商品移除購物車嗎？")) {
@@ -179,5 +183,109 @@
             });
         });
     });
+
+    //更改大小杯時，更新購物車
+    document.querySelectorAll(".size-selector").forEach(selector => {
+        selector.addEventListener("change", function () {
+            //取得商品id
+            let cartId = this.getAttribute("data-id");
+            //取得size大小
+            let selectedOption = this.options[this.selectedIndex];
+            let cup_size = selectedOption.value; //0:瓶裝 1:大杯 2:中杯
+            console.log(cartId, cup_size);
+            const formData = {
+                cartId: cartId,
+                cup_size: cup_size,
+            };
+
+            fetch(`{{ route('cart.update') }}`,{
+                method: "put",
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload(); // Reload page to update cart
+                } else {
+                    alert("更新失敗，請重試");
+                }
+            })  
+        });
+    });
+
+    //更改數量時，更新購物車
+    document.querySelectorAll(".quantity-selector").forEach(selector => {
+        selector.addEventListener("change", function () {
+            //取得商品id
+            let cartId = this.getAttribute("data-id");
+            //取得size大小
+            let selectedOption = this.options[this.selectedIndex];
+            let quantity = selectedOption.value; 
+            console.log(cartId, quantity);
+            const formData = {
+                cartId: cartId,
+                quantity: quantity,
+            };
+
+            fetch(`{{ route('cart.update') }}`,{
+                method: "put",
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload(); // Reload page to update cart
+                } else {
+                    alert("更新失敗，請重試");
+                }
+            })  
+        });
+    });
+
+    //更改甜度時，更新購物車
+    document.querySelectorAll(".sugar-selector").forEach(selector => {
+        selector.addEventListener("change", function () {
+            //取得商品id
+            let cartId = this.getAttribute("data-id");
+            //取得size大小
+            let selectedOption = this.options[this.selectedIndex];
+            let sugar = selectedOption.value; 
+            console.log(cartId, sugar);
+            const formData = {
+                cartId: cartId,
+                sugar_level: sugar,
+            };
+
+            fetch(`{{ route('cart.update') }}`,{
+                method: "put",
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload(); // Reload page to update cart
+                } else {
+                    alert("更新失敗，請重試");
+                }
+            })  
+        });
+    });
+    
+
 </script>
 @endsection

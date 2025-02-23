@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth; 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Hash;
@@ -23,24 +25,25 @@ class UserAuthController extends Controller
 
         //客製化錯誤訊息
         $messages = [
-            "name.required"         => "請輸入姓名",
+            "name.required"         => "請輸入的使用者名稱",
             "email.required"        => "請輸入電子郵件",
             "email.email"           => "請輸入有效的電子郵件",
             "email.unique"          => "此電子郵件已被註冊",
+            "email.regex"           => "電子郵件僅限使用 com、tw、net 或 org 結尾的域名",
             "phone_number.required" => "請輸入手機號碼",
-            "phone_number.regex"    => "請輸入有效的手機號碼",
+            "phone_number.regex"    => "手機號碼格式錯誤，請輸入 09 開頭的 10 碼數字",
             "password.required"     => "請輸入密碼",
-            "password.min"          => "密碼至少要有6個字元",
+            "password.min"          => "密碼至少要有 6 個字元",
             "password.confirmed"    => "密碼與確認密碼不一致",
-            "password.regex"        => "密碼至少要有一個大寫字母",
+            "password.regex"        => "密碼至少需包含一個大寫字母和一個數字，且只能包含英文字母與數字",
         ];
 
         // 驗證資料
         $validator = Validator::make($input, [
-            'name'         => 'required|string|max:255',
-            'email'        => 'required|email|unique:users,email|regex:/^[^@]+@[^@]+\.(com|tw|net|org)$/',
-            'phone_number' => 'required|regex:/^[0-9]{10}$/',
-            'password'     => 'required|min:6|confirmed|regex:/[A-Z]/', // 確保 password 和 confirm_password 一致
+            'name'         => ['required', 'string', 'max:255'],
+            'email'        => ['required', 'email', 'unique:users,email', 'regex:/^[\w.+-]+@[a-zA-Z\d.-]+\.(com|tw|net|org)$/i'],
+            'phone_number' => ['required', 'regex:/^09\d{8}$/'],
+            'password' => ['required', 'min:6', 'confirmed', 'regex:/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/'],
         ], $messages);
 
         // 驗證失敗時，返回錯誤訊息
@@ -124,7 +127,7 @@ class UserAuthController extends Controller
         ]);
 
         // 判斷使用者類型，管理者 (A) 跳轉 /user/auth/test，會員 (G) 跳轉 /
-        $redirect_url = ($tmpuser->type === 'A') ? route('user.editProfile.get') : route('home');
+        $redirect_url = ($tmpuser->type === 'A') ? route('admin.product.create') : route('home');
 
         // 回傳登入成功及對應的跳轉網址
         return response()->json([

@@ -400,37 +400,6 @@
 								class="position-absolute top-0 end-0 bg-warning px-3 mt-2 me-2 rounded-pill text-uppercase"
 								>sale</span
 							>
-							<!-- 英文大寫text-uppercase -->
-							<!-- 收藏、加入購物車、連結詳情頁 -->
-							<ul
-								class="list-unstyled d-flex align-items-center justify-content-between position-absolute start-0 end-0 mt-3 ms-3 me-3 bg-secondary bg-opacity-75 rounded-start-pill rounded-end-pill">
-								<!-- list-unstyled點拿掉 -->
-								<li class="col text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入我的最愛商品"
-										class="text-green fs-5 pt-1">
-										<i class="bi bi-suit-heart-fill"></i>
-										<span class="d-none">我的最愛商品</span>
-									</a>
-								</li>
-								<li
-									class="border-start border-end border-dark py-1 col-6 text-center">
-									<a
-										href="javascript:;"
-										title="點擊加入購物車"
-										class="text-green fs-5">
-										<i class="bi bi-cart-plus"></i>
-										<span class="d-none">加入購物車</span>
-									</a>
-								</li>
-								<li class="col text-center">
-									<a href="#" title="點擊前往商品說明頁" class="text-green fs-5 pt-1">
-										<i class="bi bi-info-circle-fill"></i>
-										<span class="d-none">商品說明頁</span>
-									</a>
-								</li>
-							</ul>
 							<!-- rounded-pill圓角 -->
 						</div>
 						<div class="card-body text-darkred text-center">

@@ -110,6 +110,7 @@
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
+				@if (!$products->isEmpty())
 				<form action="{{route('admin.product.update', $product->id)}}" method="post" enctype="multipart/form-data" id="edit_product_form">
 					@csrf
 					<!-- 使用put方法 -->
@@ -173,6 +174,7 @@
 					<button type="submit" class="btn btn-danger">儲存</button>
 					<!-- <button type="reset" class="btn btn-secondary">清除</button> -->
 				</form>
+				@endif
 			</div>
 		</div>
 	</div>
