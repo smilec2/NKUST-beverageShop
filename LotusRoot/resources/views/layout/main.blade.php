@@ -206,6 +206,12 @@
 				});
 			});
 		</script>
+		<!-- google登入 -->
+		@if(session('success_message'))
+		<script>
+			alert("{{ session('success_message') }}")
+		</script>
+		@endif
 	</body>
 </html>
 

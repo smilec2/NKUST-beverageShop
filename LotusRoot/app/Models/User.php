@@ -19,7 +19,8 @@ class User extends Model {
         "email",
         "password",
         "name",
-        "phone_number"
+        "phone_number",
+        "google_id"
     ];
 
     public function carts()

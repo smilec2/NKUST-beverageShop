@@ -87,7 +87,7 @@
                         </span>
                     </div>
                     <div class="d-flex justify-content-center align-items-center gap-3 py-2">
-                        <a href="###" data-platform="Google">
+                        <a href="{{ route('google.redirect') }}" data-platform="Google">
                             <img class="rounded-circle btn btn-light" src="assets/images/Google.svg" />
                         </a>
                         <a href="###" data-platform="facebook">
