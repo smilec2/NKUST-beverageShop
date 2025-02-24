@@ -154,7 +154,7 @@
                                         <li><a class="dropdown-item" href="#">選項 2</a></li>
                                         <li><a class="dropdown-item" href="#">選項 3</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="{{ route('signout') }}">登出</a></li>
+                                        <li><a class="dropdown-item text-danger" href="{{ route('user.signout') }}">登出</a></li>
                                     </ul>
                                 </li>
                             @else
