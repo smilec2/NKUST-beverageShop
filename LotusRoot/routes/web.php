@@ -16,7 +16,6 @@ Route::view('/menu', 'menu')->name('menu');
 //會員管理
 Route::prefix('user')->group(function () {
     Route::prefix('auth')->group(function () {
-        Route::get('test', [UserAuthController::class, 'Signtest'])->middleware(AuthUserAdminMiddleware::class);
         Route::post('signup', [UserAuthController::class, 'SignUpProcess'])->name('user.signup');
         Route::post('signin', [UserAuthController::class, 'SigninProcess'])->name('user.signin');
         Route::get('signout', [UserAuthController::class, 'SignOut'])->name('user.signout');

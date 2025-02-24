@@ -1,16 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth; 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Cart;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
-use Socialite;
-
 
 class UserAuthController extends Controller
 {
@@ -137,12 +134,8 @@ class UserAuthController extends Controller
     // 清除 session 中的 user_id
     public function SignOut()
     {
-        session()->forget('user_id');  
-        return redirect('/');  // 登出後重定向回登入頁面
-    }
-    // 測試管理員導入
-    public function Signtest() {
-        return view('layout.main'); 
+        session()->forget('user_id');
+        return redirect(route('home')); // 登出後重定向回登入頁面
     }
     // 會員變更頁面
     public function editProfileGet()
@@ -209,5 +202,4 @@ class UserAuthController extends Controller
 
         return response()->json(['success' => '更新成功！']);
     }
- 
 }
